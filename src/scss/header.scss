@@ -1,0 +1,19 @@
+@import "./app.scss";
+div.appheader {
+  background-color: $primeTheme;
+  padding: 15px 0px;
+  font-size: 1.2rem;
+
+  color: white;
+  .button {
+    display: inline-block;
+    opacity: 0;
+    width: 25px;
+    text-align: center;
+    transition: width 0.3s, opacity 0.3s;
+    &.show {
+      width: 60px;
+      opacity: 1;
+    }
+  }
+}
