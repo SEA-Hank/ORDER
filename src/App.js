@@ -4,6 +4,7 @@ import store from "./redux/store";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Header from "./components/header";
 import Category from "./components/category";
+import FoodList from "./components/foodList";
 function App() {
   return (
     <Provider store={store}>
@@ -15,6 +16,7 @@ function App() {
           <Switch>
             <Route path="/">
               <Category />
+              <FoodList />
             </Route>
           </Switch>
         </Router>

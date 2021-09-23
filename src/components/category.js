@@ -9,24 +9,24 @@ const Category = ({ local, categories, asyncGetCategory }) => {
   const [markerPst, setMarkerPst] = useState("0px");
 
   useEffect(() => {
-    if (isNaN(local.activeIndex)) {
+    if (isNaN(local.activatedIndex)) {
       asyncGetCategory();
       return;
     }
-    let activeItem = local.activeItem;
-    if (!activeItem) {
-      activeItem = ulEl.current.firstElementChild;
-    }
+    let activeItem = ulEl.current.children[local.activatedIndex];
+
     let offsetLeft = activeItem.offsetLeft;
     let offsetWidth = activeItem.offsetWidth;
     let scrollLeft = wrapperEl.current.scrollLeft;
     let availWidth = window.screen.availWidth;
+
     let plus = 30;
     let sccrollObj = {
       top: 0,
       left: 0,
       behavior: "smooth",
     };
+
     if (scrollLeft > offsetLeft) {
       sccrollObj.left = offsetLeft - plus;
     }
@@ -44,7 +44,7 @@ const Category = ({ local, categories, asyncGetCategory }) => {
       <CategoryItem
         key={item.id}
         name={item.name}
-        active={index === local.activeIndex}
+        activated={index === local.activatedIndex}
         index={index}
       />
     );
@@ -53,13 +53,13 @@ const Category = ({ local, categories, asyncGetCategory }) => {
   return (
     <div ref={wrapperEl} className="category">
       <div className="content-wrapper">
-        {!isNaN(local.activeIndex) ? (
+        {!isNaN(local.activatedIndex) ? (
           <>
             <ul ref={ulEl} className="category-wrapper">
               {items}
             </ul>
             <span
-              className="category-actived-marker"
+              className="category-activated-marker"
               style={{ left: markerPst }}
             ></span>
           </>

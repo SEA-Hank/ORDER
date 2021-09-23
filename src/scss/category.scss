@@ -3,8 +3,13 @@ div.category {
   &::-webkit-scrollbar {
     display: none;
   }
+  border-bottom: 1px solid #818181;
+  padding: 5px;
   overflow-x: auto;
-  background: #f2f2f2;
+  background: $bgColor;
+  position: sticky;
+  top: 0px;
+  z-index: 999;
   div.content-wrapper {
     position: relative;
 
@@ -23,14 +28,14 @@ div.category {
         font-size: 1.1rem;
         font-family: sans-serif;
         color: #333333;
-        &.actived {
+        &.activated {
           color: $primeTheme;
           font-weight: 900;
           font-size: 1.3rem;
         }
       }
     }
-    span.category-actived-marker {
+    span.category-activated-marker {
       height: 3px;
       width: 16px;
       background: #f96302;

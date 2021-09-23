@@ -2,8 +2,10 @@ import {
   SYS_AJAX_ERROR,
   HD_BTN_TRIGLE,
   HD_SET_TITLE,
-  CG_ACTIVE_INDEX,
+  CG_ACTIVATED_INDEX,
   CG_SET_CATEGORIES,
+  FD_SET_FOODLIST,
+  OD_SET_ORDER,
 } from "./actionTypes";
 import communication from "../common/communication";
 
@@ -25,7 +27,7 @@ export const asyncGetTitle = () => {
       (data) => {
         setTimeout(() => {
           dispatch(setTitle(data.title));
-        }, 1000 * 5);
+        }, 1000 * 0);
       }
     );
   };
@@ -35,11 +37,11 @@ export const hdBtnTrigle = () => ({
   type: HD_BTN_TRIGLE,
 });
 
-export const setCGActiveIndex = (activeIndex, activeItem) => ({
-  type: CG_ACTIVE_INDEX,
+export const setCGActivatedIndex = (activatedIndex, isActivatedByClick) => ({
+  type: CG_ACTIVATED_INDEX,
   payload: {
-    activeIndex,
-    activeItem,
+    activatedIndex,
+    isActivatedByClick,
   },
 });
 
@@ -56,8 +58,34 @@ export const asyncGetCategory = () => {
       (categories) => {
         setTimeout(() => {
           dispatch(setCategories(categories));
-        }, 1000 * 5);
+        }, 1000 * 0);
       }
     );
   };
 };
+
+export const setFoodList = (foodList) => ({
+  type: FD_SET_FOODLIST,
+  payload: {
+    foodList,
+  },
+});
+
+export const asyncGetFoodList = () => {
+  return (dispatch) => {
+    communication({ method: "get", url: "/getfoodlist", dispatch }).then(
+      (foodList) => {
+        dispatch(setFoodList(foodList));
+      }
+    );
+  };
+};
+
+export const setOrder = (category, foodId, count) => ({
+  type: OD_SET_ORDER,
+  payload: {
+    category,
+    foodId,
+    count,
+  },
+});

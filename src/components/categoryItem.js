@@ -1,19 +1,16 @@
-import { useRef } from "react";
 import { connect } from "react-redux";
-import { setCGActiveIndex } from "../redux/actions";
-const CategoryItem = ({ name, active, index, setCGActiveIndex }) => {
-  const liEl = useRef(null);
+import { setCGActivatedIndex } from "../redux/actions";
+const CategoryItem = ({ name, activated, index, setCGActivatedIndex }) => {
   return (
     <li
       onClick={() => {
-        setCGActiveIndex(index, liEl.current);
+        setCGActivatedIndex(index, true);
       }}
-      ref={liEl}
-      className={`category-item ${active ? "actived" : ""}`}
+      className={`category-item ${activated ? "activated" : ""}`}
     >
       {name}
     </li>
   );
 };
 
-export default connect(null, { setCGActiveIndex })(CategoryItem);
+export default connect(null, { setCGActivatedIndex })(CategoryItem);

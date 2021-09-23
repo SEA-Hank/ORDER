@@ -8,6 +8,7 @@ export default ({ method, url, data, dispatch }) => {
     data,
   })
     .catch((error) => {
+      console.log(error);
       dispatch(ajaxError(error.message));
       return Promise.reject();
     })

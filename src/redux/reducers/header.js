@@ -1,4 +1,8 @@
 import { HD_BTN_TRIGLE, HD_SET_TITLE } from "../actionTypes";
+/*
+title:string
+local.showBtn : bool
+ */
 const initialState = {
   title: null,
   local: { showBtn: false },
