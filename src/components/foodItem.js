@@ -32,7 +32,7 @@ const FoodItem = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  let countOfOrder = state.order[ownProps.category]?.[ownProps.id] || 0;
+  let countOfOrder = state.order.order[ownProps.category]?.[ownProps.id] || 0;
   return { countOfOrder };
 };
 

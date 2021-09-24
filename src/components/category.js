@@ -8,11 +8,7 @@ const Category = ({ local, categories, asyncGetCategory }) => {
   const ulEl = useRef(null);
   const [markerPst, setMarkerPst] = useState("0px");
 
-  useEffect(() => {
-    if (isNaN(local.activatedIndex)) {
-      asyncGetCategory();
-      return;
-    }
+  let ComputePst = function () {
     let activeItem = ulEl.current.children[local.activatedIndex];
 
     let offsetLeft = activeItem.offsetLeft;
@@ -21,22 +17,37 @@ const Category = ({ local, categories, asyncGetCategory }) => {
     let availWidth = window.screen.availWidth;
 
     let plus = 30;
+    this.getScrollLeft = function () {
+      if (scrollLeft > offsetLeft) {
+        return offsetLeft - plus;
+      }
+      if (offsetLeft + offsetWidth > scrollLeft + availWidth) {
+        return offsetLeft + offsetWidth - availWidth + plus;
+      }
+      return 0;
+    };
+    this.getMarkerPst = function () {
+      return offsetLeft + offsetWidth / 2 + "px";
+    };
+  };
+
+  useEffect(() => {
+    if (isNaN(local.activatedIndex)) {
+      asyncGetCategory();
+      return;
+    }
+    var pstObj = new ComputePst();
+
     let sccrollObj = {
       top: 0,
-      left: 0,
+      left: pstObj.getScrollLeft(),
       behavior: "smooth",
     };
 
-    if (scrollLeft > offsetLeft) {
-      sccrollObj.left = offsetLeft - plus;
-    }
-    if (offsetLeft + offsetWidth > scrollLeft + availWidth) {
-      sccrollObj.left = offsetLeft + offsetWidth - availWidth + plus;
-    }
     if (sccrollObj.left !== 0) {
       wrapperEl.current.scrollTo(sccrollObj);
     }
-    setMarkerPst(offsetLeft + offsetWidth / 2 + "px");
+    setMarkerPst(pstObj.getMarkerPst());
   }, [local]);
 
   let items = categories.map((item, index) => {

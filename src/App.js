@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Header from "./components/header";
 import Category from "./components/category";
 import FoodList from "./components/foodList";
+import CheckOut from "./components/checkOut";
 function App() {
   return (
     <Provider store={store}>
@@ -17,6 +18,7 @@ function App() {
             <Route path="/">
               <Category />
               <FoodList />
+              <CheckOut />
             </Route>
           </Switch>
         </Router>
