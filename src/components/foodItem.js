@@ -19,7 +19,7 @@ const FoodItem = (props) => {
         <p className="item-name">{name}</p>
         <p className="item-instruction">{description}</p>
         <p className="item-price">
-          $ <strong>{price}</strong>
+          $ <strong>{price.toFixed(2)}</strong>
         </p>
       </div>
       <FoodOperation

@@ -10,7 +10,18 @@ order schema
     ...
 }
 */
-  order: {},
+  order: {
+    //   Appetizers: {
+    //     1: 2,
+    //   },
+    //   "Salads And Soup": {
+    //     4: 2,
+    //     5: 1,
+    //   },
+    //   "Veal Dishes": {
+    //     10: 2,
+    //   },
+  },
 };
 
 export default function (state = initialState, actions) {

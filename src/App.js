@@ -6,6 +6,7 @@ import Header from "./components/header";
 import Category from "./components/category";
 import FoodList from "./components/foodList";
 import CheckOut from "./components/checkOut";
+import ShoppingCar from "./components/shoppingCar";
 function App() {
   return (
     <Provider store={store}>
@@ -15,6 +16,9 @@ function App() {
             <Header />
           </Route>
           <Switch>
+            <Route path="/checkout">
+              <ShoppingCar />
+            </Route>
             <Route path="/">
               <Category />
               <FoodList />

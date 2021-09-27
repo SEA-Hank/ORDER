@@ -84,7 +84,6 @@ time,
 mark,
 audio,
 video {
-  font-family: Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
   border: 0;
@@ -92,6 +91,8 @@ video {
   font: inherit;
   vertical-align: baseline;
   box-sizing: border-box;
+  font-family: Tahoma, Arial, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
 article,

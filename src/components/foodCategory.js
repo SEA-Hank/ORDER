@@ -17,7 +17,7 @@ const FoodCategory = (props) => {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (!scrollObserver.isLock) {
+      if (!scrollObserver.isLock && titleEl.current) {
         let top = titleEl.current.getBoundingClientRect().top;
         if (top <= GAP && top > 0) {
           setCGActivatedIndex(index, false);

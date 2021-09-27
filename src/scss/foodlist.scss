@@ -105,7 +105,7 @@ div.foodlist {
           flex-grow: 2;
           color: $primeTheme;
           user-select: none;
-          font-family: 900;
+          font-weight: 900;
           &:active {
             background: #f9630285;
           }
