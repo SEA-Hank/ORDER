@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faEdit } from "@fortawesome/free-solid-svg-icons";
 import SpcCategory from "./spcCategory";
+import SpcSummary from "./spcSummary";
 const ShoppingCar = ({ order }) => {
   var isShowGategory = (items) => {
     for (let key in items) {
@@ -12,7 +13,7 @@ const ShoppingCar = ({ order }) => {
     }
     return false;
   };
-
+  //TODO: sort category
   var generateCtg = () => {
     let categories = [];
     for (let categoryName in order) {
@@ -39,16 +40,7 @@ const ShoppingCar = ({ order }) => {
         </div>
         <div className="spc-list">{generateCtg()}</div>
         <div className="spc-summary">
-          <table>
-            <tr className="summary-item">
-              <td className="sum-item-title">subtotal</td>
-              <td className="sum-item-amount">29.99</td>
-            </tr>
-            <tr className="summary-item">
-              <td className="sum-item-title strong">Total</td>
-              <td className="sum-item-amount">29.99</td>
-            </tr>
-          </table>
+          <SpcSummary />
         </div>
         <div className="spc-comfirm">
           <button>checkout</button>

@@ -22,6 +22,8 @@ order schema
     //     10: 2,
     //   },
   },
+  taxRate: 0.1,
+  tips: 0,
 };
 
 export default function (state = initialState, actions) {

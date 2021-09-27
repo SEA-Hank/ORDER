@@ -27,4 +27,4 @@ const mapStateToProps = (state, ownProp) => {
   return { info: info };
 };
 
-export default connect(mapStateToProps, {})(SpcItem);
+export default connect(mapStateToProps, null)(SpcItem);
