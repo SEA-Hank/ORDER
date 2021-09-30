@@ -4,9 +4,16 @@ import SpcSummaryItem from "./SpcSummaryItem";
 const SpsSummary = ({ total, subtotal, tax }) => {
   return (
     <table>
-      <SpcSummaryItem key="subtotal" title={"subtotal"} amout={subtotal} />
-      <SpcSummaryItem key="tax" title={"tax"} amout={tax} />
-      <SpcSummaryItem key="Total" title={"Total"} amout={total} strong={true} />
+      <tbody>
+        <SpcSummaryItem key="subtotal" title={"subtotal"} amout={subtotal} />
+        <SpcSummaryItem key="tax" title={"tax"} amout={tax} />
+        <SpcSummaryItem
+          key="Total"
+          title={"Total"}
+          amout={total}
+          strong={true}
+        />
+      </tbody>
     </table>
   );
 };

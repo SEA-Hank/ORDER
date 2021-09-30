@@ -71,26 +71,7 @@
       button {
         height: 40px;
         width: 90%;
-        font-size: 1.2rem;
-        border-radius: 10px;
-        background-image: linear-gradient(
-          90deg,
-          red 0%,
-          $primeTheme 25%,
-          $primeTheme 50%,
-          red 100%
-        );
-        border: none;
-        color: white;
-        &:active {
-          background-image: linear-gradient(
-            90deg,
-            rgb(175, 4, 4) 0%,
-            $primeTheme 40%,
-            $primeTheme 50%,
-            rgb(175, 4, 4) 100%
-          );
-        }
+        @extend %primeButton;
       }
     }
     .spc-summary {

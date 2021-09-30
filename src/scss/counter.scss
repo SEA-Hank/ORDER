@@ -1,0 +1,53 @@
+$counterBgColor: #cacaca;
+@import "./app.scss";
+.counter {
+  display: inline-flex;
+  flex-direction: row;
+  height: 40px;
+  width: 150px;
+  .counter-content-wrapper {
+    flex-grow: 1;
+    border-top: 1px solid $primeTheme;
+    border-bottom: 1px solid $primeTheme;
+    .counter-input {
+      border: none;
+      width: 100%;
+      outline: none;
+      font-size: 1rem;
+      height: 100%;
+      padding: 0px;
+      text-align: center;
+      display: block;
+    }
+    .counter-content {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .counter-btn {
+    background: $primeTheme;
+    border: none;
+    height: inherit;
+    width: 40px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    outline: none;
+    padding: 0px;
+    font-size: 1.6rem;
+    color: white;
+    user-select: none;
+    &.btnleft {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+    &.btnright {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    &:active {
+      background: #ca5104;
+    }
+  }
+}

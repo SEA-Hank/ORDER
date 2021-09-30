@@ -1,0 +1,67 @@
+@import "./app.scss";
+.spcEditor-wrapper {
+  .spcEditor-img {
+    text-align: center;
+    img {
+      height: 100px;
+      width: 200px;
+      object-fit: contain;
+      box-shadow: 0px 0px 15px 1px #e4e1e1;
+      border-radius: 10px;
+    }
+  }
+  .spcEditor-name {
+    padding: 15px;
+    text-align: center;
+    color: $primeTheme;
+    font-size: 1.6rem;
+    font-weight: 800;
+  }
+  .spcEditor-description {
+    padding: 20px;
+    font-family: monospace;
+    border-bottom: 1px solid $primeTheme;
+  }
+  .spcEditor-operation {
+    padding: 10px;
+    text-align: end;
+    label {
+      font-size: 1.2rem;
+      padding: 0px 10px;
+    }
+  }
+  .spcEditor-amount {
+    text-align: end;
+    padding: 10px 0px;
+    label {
+      padding: 3px;
+      &.strong {
+        color: $primeTheme;
+      }
+    }
+  }
+  .spcEditor-buttons {
+    button {
+      display: block;
+      margin: 15px 0px;
+      width: 100%;
+      height: 40px;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      &.save {
+        @extend %primeButton;
+        font-size: 1.1rem;
+      }
+      &.remove {
+        background: #2f2f2f;
+      }
+      &.cancel {
+        color: black;
+        background: none;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

@@ -1,10 +1,13 @@
 import "../scss/shoppingCar.scss";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import SpcCategory from "./spcCategory";
 import SpcSummary from "./spcSummary";
+import SpcEditor from "./SpcEditor";
+import { useRef } from "react";
 const ShoppingCar = ({ order }) => {
+  let popUpEL = useRef(null);
   var isShowGategory = (items) => {
     for (let key in items) {
       if (items[key] > 0) {
@@ -29,6 +32,9 @@ const ShoppingCar = ({ order }) => {
     }
     return categories;
   };
+  const checkOutClick = () => {
+    popUpEL.current.show();
+  };
   return (
     <div className="shoppingcar-wrapper">
       <div className="shoppingcar-detail">
@@ -43,9 +49,10 @@ const ShoppingCar = ({ order }) => {
           <SpcSummary />
         </div>
         <div className="spc-comfirm">
-          <button>checkout</button>
+          <button onClick={checkOutClick}>checkout</button>
         </div>
       </div>
+      <SpcEditor ref={popUpEL}></SpcEditor>
     </div>
   );
 };
