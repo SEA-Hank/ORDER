@@ -5,7 +5,7 @@ foodList schema
     category : [{
         id,
         name,
-        imgscr
+        img,
         price,
         description
     },...],

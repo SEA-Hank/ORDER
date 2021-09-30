@@ -9,3 +9,4 @@ export const CG_SET_CATEGORIES = "CG_SET_CATEGORIES";
 export const FD_SET_FOODLIST = "FD_SET_FOODLIST";
 
 export const OD_SET_ORDER = "OD_SET_ORDER";
+export const OD_SET_EDITOR = "OD_SET_EDITOR";

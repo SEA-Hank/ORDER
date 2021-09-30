@@ -1,4 +1,4 @@
-import { OD_SET_ORDER } from "../actionTypes";
+import { OD_SET_ORDER, OD_SET_EDITOR } from "../actionTypes";
 const initialState = {
   /*
 order schema
@@ -24,6 +24,11 @@ order schema
   },
   taxRate: 0.1,
   tips: 0,
+  editor: {
+    foodInfo: {},
+    quantity: 0,
+    category: null,
+  },
 };
 
 export default function (state = initialState, actions) {
@@ -35,6 +40,13 @@ export default function (state = initialState, actions) {
         order: {
           ...state.order,
           [category]: { ...state.order[category], [foodId]: count },
+        },
+      };
+    case OD_SET_EDITOR:
+      return {
+        ...state,
+        editor: {
+          ...actions.payload,
         },
       };
     default:

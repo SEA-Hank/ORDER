@@ -6,6 +6,7 @@ import {
   CG_SET_CATEGORIES,
   FD_SET_FOODLIST,
   OD_SET_ORDER,
+  OD_SET_EDITOR,
 } from "./actionTypes";
 import communication from "../common/communication";
 
@@ -88,4 +89,9 @@ export const setOrder = (category, foodId, count) => ({
     foodId,
     count,
   },
+});
+
+export const setOrderEditor = (foodInfo, quantity, category) => ({
+  type: OD_SET_EDITOR,
+  payload: { foodInfo, quantity, category },
 });

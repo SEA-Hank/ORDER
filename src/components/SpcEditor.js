@@ -1,35 +1,63 @@
 import "../scss/spcEditor.scss";
+import { connect } from "react-redux";
 import withPopUp from "../common/widthPopUp";
 import Counter from "../common/counter";
-const SpcEditor = ({ popUp }) => {
+import { useState } from "react";
+import { setOrder } from "../redux/actions";
+let SpcEditor = ({ popUp, foodInfo, quantity, category, setOrder }) => {
+  const [qty, setQty] = useState(quantity);
+
+  const counterOnChange = (val) => {
+    setQty(parseInt(val));
+  };
+
+  const save = () => {
+    setOrder(category, foodInfo.id, qty);
+    cancel();
+  };
+
+  const remove = () => {
+    setOrder(category, foodInfo.id, 0);
+    cancel();
+  };
+
   const cancel = () => {
     popUp.hide();
   };
 
   return (
     <div className="spcEditor-wrapper">
-      <div className="spcEditor-name">Cozze E Vongole</div>
+      <div className="spcEditor-name">{foodInfo.name}</div>
       <div className="spcEditor-img">
-        <img src="http://192.168.0.5:5000/images/appetizers/1.jpeg"></img>
+        <img src={foodInfo.img}></img>
       </div>
 
-      <div className="spcEditor-description">
-        Mussels and Manila Clams, White Wine Garlic
-      </div>
+      <div className="spcEditor-description">{foodInfo.description}</div>
       <div className="spcEditor-operation">
         <label>Quantity</label>
-        <Counter min={1} max={99} value={3} height={35} width={125} />
+        <Counter
+          min={1}
+          max={99}
+          value={qty}
+          height={35}
+          width={125}
+          onChange={counterOnChange}
+        />
       </div>
       <div className="spcEditor-amount">
-        <label>$8.95</label>
+        <label>${foodInfo.price.toFixed(2)}</label>
         <label>x</label>
-        <label>6</label>
+        <label>{qty}</label>
         <label>=</label>
-        <label className="strong">$53.70</label>
+        <label className="strong">${(foodInfo.price * qty).toFixed(2)}</label>
       </div>
       <div className="spcEditor-buttons">
-        <button className="save">SAVE CHANGES</button>
-        <button className="remove">REMOVE</button>
+        <button className="save" onClick={save}>
+          SAVE CHANGES
+        </button>
+        <button className="remove" onClick={remove}>
+          REMOVE
+        </button>
         <button className="cancel" onClick={cancel}>
           CANCEL
         </button>
@@ -37,5 +65,11 @@ const SpcEditor = ({ popUp }) => {
     </div>
   );
 };
+
+const mapStateToProps = (state, ownProp) => {
+  return { ...state.order.editor };
+};
+
+SpcEditor = connect(mapStateToProps, { setOrder })(SpcEditor);
 
 export default withPopUp(SpcEditor);

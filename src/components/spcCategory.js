@@ -1,5 +1,5 @@
 import SpcItem from "./spcItem";
-const SpcCategory = ({ category, items }) => {
+const SpcCategory = ({ category, items, popUp }) => {
   const generateItems = () => {
     let list = [];
     for (let foodId in items) {
@@ -10,6 +10,7 @@ const SpcCategory = ({ category, items }) => {
             category={category}
             foodId={foodId}
             quantity={items[foodId]}
+            popUp={popUp}
           />
         );
     }

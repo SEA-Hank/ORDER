@@ -26,6 +26,7 @@ const ShoppingCar = ({ order }) => {
             key={categoryName}
             category={categoryName}
             items={order[categoryName]}
+            popUp={popUpEL}
           />
         );
       }
