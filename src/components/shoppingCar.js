@@ -1,16 +1,20 @@
 import "../scss/shoppingCar.scss";
+import { useRef } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import SpcCategory from "./spcCategory";
 import SpcSummary from "./spcSummary";
 import SpcEditor from "./SpcEditor";
-import { useRef } from "react";
+
+import Payment from "./payment";
 const ShoppingCar = ({ order }) => {
   let popUpEL = useRef(null);
+  let isEmpty = true;
   var isShowGategory = (items) => {
     for (let key in items) {
       if (items[key] > 0) {
+        isEmpty = false;
         return true;
       }
     }
@@ -46,14 +50,20 @@ const ShoppingCar = ({ order }) => {
           </p>
         </div>
         <div className="spc-list">{generateCtg()}</div>
-        <div className="spc-summary">
-          <SpcSummary />
-        </div>
-        <div className="spc-comfirm">
-          <button onClick={checkOutClick}>checkout</button>
-        </div>
+        {!isEmpty && (
+          <>
+            <div className="spc-summary">
+              <SpcSummary />
+            </div>
+            <div className="spc-comfirm">
+              <button onClick={checkOutClick}>checkout</button>
+            </div>
+          </>
+        )}
+        {isEmpty && <div className="spc-empty">EMPTY</div>}
       </div>
       <SpcEditor ref={popUpEL}></SpcEditor>
+      <Payment></Payment>
     </div>
   );
 };

@@ -2,10 +2,14 @@ import "../scss/spcEditor.scss";
 import { connect } from "react-redux";
 import withPopUp from "../common/widthPopUp";
 import Counter from "../common/counter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { setOrder } from "../redux/actions";
 let SpcEditor = ({ popUp, foodInfo, quantity, category, setOrder }) => {
   const [qty, setQty] = useState(quantity);
+
+  useEffect(() => {
+    setQty(quantity);
+  }, [quantity]);
 
   const counterOnChange = (val) => {
     setQty(parseInt(val));

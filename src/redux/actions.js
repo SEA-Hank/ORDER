@@ -7,6 +7,7 @@ import {
   FD_SET_FOODLIST,
   OD_SET_ORDER,
   OD_SET_EDITOR,
+  OD_SET_TIPS,
 } from "./actionTypes";
 import communication from "../common/communication";
 
@@ -94,4 +95,13 @@ export const setOrder = (category, foodId, count) => ({
 export const setOrderEditor = (foodInfo, quantity, category) => ({
   type: OD_SET_EDITOR,
   payload: { foodInfo, quantity, category },
+});
+
+export const setOrderTips = (value, caculateType, isShow = true) => ({
+  type: OD_SET_TIPS,
+  payload: {
+    isShow,
+    caculateType, //value or percentage
+    value,
+  },
 });

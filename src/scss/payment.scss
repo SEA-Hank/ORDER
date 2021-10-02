@@ -1,0 +1,40 @@
+@import "./app.scss";
+.payment-wrapper {
+  padding: 20px 0px;
+  .paymentStep-wrapper {
+    display: flex;
+    flex-direction: row;
+    .payment-step {
+      flex-basis: 50px;
+      flex-grow: 0;
+      flex-shrink: 0;
+      text-align: center;
+      position: relative;
+      span {
+        color: white;
+        background: $primeTheme;
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        border-radius: 30px;
+        line-height: 30px;
+        text-align: center;
+        z-index: 2;
+      }
+      div.vertical-line {
+        width: 50%;
+        height: 100%;
+        border-right: 2px solid $primeTheme;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: -1;
+      }
+    }
+    .payment-content {
+      flex-grow: 1;
+      padding: 6px 10px 20px 10px;
+      min-height: 100px;
+    }
+  }
+}

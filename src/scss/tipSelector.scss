@@ -1,0 +1,43 @@
+@import "./app.scss";
+.payment-tips {
+  .payment-tips-p {
+    font-size: 1.2rem;
+    span {
+      color: $primeTheme;
+      font-style: italic;
+    }
+  }
+  .tipOptions {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    li {
+      border: 1px dashed #818181;
+      margin: 0px 15px 15px 0px;
+      padding: 10px;
+      font-size: 0.8rem;
+      padding: 6px 6px;
+      &.activated {
+        border: 1px solid $primeTheme;
+        background: $primeTheme;
+        color: white;
+      }
+    }
+  }
+  .tipsInput {
+    input {
+      border: none;
+      border-bottom: 1px solid #828282;
+      width: 80%;
+      height: 30px;
+      outline: none;
+      color: #828282;
+      &:focus {
+        border-bottom: 1px solid #333;
+        color: #333;
+      }
+    }
+  }
+}

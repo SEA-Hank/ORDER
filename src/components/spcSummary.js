@@ -1,12 +1,16 @@
 //todo
 import { connect } from "react-redux";
 import SpcSummaryItem from "./SpcSummaryItem";
-const SpsSummary = ({ total, subtotal, tax }) => {
+import { calculateSummaryInfo } from "../common/common";
+const SpsSummary = ({ total, subtotal, tax, tips }) => {
   return (
     <table>
       <tbody>
         <SpcSummaryItem key="subtotal" title={"subtotal"} amout={subtotal} />
         <SpcSummaryItem key="tax" title={"tax"} amout={tax} />
+        {tips !== null && (
+          <SpcSummaryItem key="tips" title={"tips"} amout={tips} />
+        )}
         <SpcSummaryItem
           key="Total"
           title={"Total"}
@@ -18,20 +22,11 @@ const SpsSummary = ({ total, subtotal, tax }) => {
   );
 };
 const mapStateToProps = (state) => {
-  let subtotal = 0;
-  let total = 0;
-  let tax = 0;
-  let orders = state.order.order;
-  let foodList = state.foodList.foodList;
-  for (let category in orders) {
-    let ctgList = foodList[category];
-    for (let foodId in orders[category]) {
-      let foodInfo = ctgList.find((e) => e.id == foodId);
-      subtotal += foodInfo.price * orders[category][foodId];
-    }
-  }
-  tax = subtotal * state.order.taxRate;
-  total = tax + subtotal;
-  return { total, subtotal, tax, ...state.order.order.tips };
+  return calculateSummaryInfo(
+    state.order.order,
+    state.foodList.foodList,
+    state.order.tips,
+    state.order.taxRate
+  );
 };
 export default connect(mapStateToProps, null)(SpsSummary);
