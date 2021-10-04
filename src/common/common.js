@@ -1,3 +1,4 @@
+import { TipCaculateType } from "../redux/actionTypes";
 export const calculateSummaryInfo = (orders, foodList, tips, taxRate) => {
   let subtotal = 0;
   let totalWithoutTips = 0;
@@ -14,7 +15,7 @@ export const calculateSummaryInfo = (orders, foodList, tips, taxRate) => {
   tax = parseFloat((subtotal * taxRate).toFixed(2));
   totalWithoutTips = tax + subtotal;
   tipVal =
-    tips.caculateType === "value"
+    tips.caculateType === TipCaculateType.EXACT
       ? tips.value
       : parseFloat((totalWithoutTips * tips.value).toFixed(2));
 
@@ -24,6 +25,6 @@ export const calculateSummaryInfo = (orders, foodList, tips, taxRate) => {
     totalWithoutTips,
     total,
     tax,
-    tips: tips.isShow ? tipVal : null,
+    tips: tips.isShow ? tipVal : 0,
   };
 };

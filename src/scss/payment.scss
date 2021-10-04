@@ -35,6 +35,31 @@
       flex-grow: 1;
       padding: 6px 10px 20px 10px;
       min-height: 100px;
+      .payment-userInfo {
+        > div {
+          margin: 0px 0px 20px 0px;
+        }
+      }
+      .payment-cardInfo {
+        > div {
+          margin: 0px 0px 20px 0px;
+        }
+        .payment-cardInfo-expiratioin {
+          display: flex;
+          flex-direction: row;
+          > div {
+            &:last-child {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
     }
+  }
+  .payment-submit-btn {
+    @extend %primeButton;
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
   }
 }

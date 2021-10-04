@@ -25,7 +25,7 @@ order schema
   taxRate: 0.1,
   tips: {
     isShow: false,
-    caculateType: "value", //value or percentage
+    caculateType: "exact", //exact or percentage
     value: 0,
   },
   editor: {

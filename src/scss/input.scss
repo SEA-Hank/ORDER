@@ -1,0 +1,39 @@
+$error: #bd1c1c;
+.input-wrapper {
+  width: 100%;
+  display: inline-block;
+  .input-content {
+    position: relative;
+    border-bottom: 1px solid black;
+    padding: 20px 0px 5px 0px;
+    user-select: none;
+    &.error {
+      //color: $error;
+      border-color: $error;
+    }
+    .input-description {
+      position: absolute;
+      font-size: 1.6rem;
+      transition: font-size 0.3s, top 0.3s;
+      top: 16px;
+      &.activated {
+        top: 0px;
+        font-size: 1rem;
+      }
+    }
+    .input-input {
+      color: inherit;
+      border: none;
+      outline: none;
+      font-size: 1.2rem;
+      padding: 0px;
+      width: 100%;
+    }
+  }
+  .input-error {
+    padding: 2px 0px;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: $error;
+  }
+}

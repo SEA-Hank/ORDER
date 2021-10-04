@@ -11,3 +11,7 @@ export const FD_SET_FOODLIST = "FD_SET_FOODLIST";
 export const OD_SET_ORDER = "OD_SET_ORDER";
 export const OD_SET_EDITOR = "OD_SET_EDITOR";
 export const OD_SET_TIPS = "OD_SET_TIPS";
+export const TipCaculateType = {
+  EXACT: "exact",
+  PERCENTAGE: "percentage",
+};
