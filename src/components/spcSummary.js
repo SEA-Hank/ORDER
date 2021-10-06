@@ -1,14 +1,12 @@
 //todo
-import { connect } from "react-redux";
 import SpcSummaryItem from "./SpcSummaryItem";
-import { calculateSummaryInfo } from "../common/common";
-const SpsSummary = ({ total, subtotal, tax, tips }) => {
+const SpsSummary = ({ total, subtotal, tax, tips, isShowTips }) => {
   return (
     <table>
       <tbody>
         <SpcSummaryItem key="subtotal" title={"subtotal"} amout={subtotal} />
         <SpcSummaryItem key="tax" title={"tax"} amout={tax} />
-        {tips !== null && (
+        {isShowTips && (
           <SpcSummaryItem key="tips" title={"tips"} amout={tips} />
         )}
         <SpcSummaryItem
@@ -21,12 +19,4 @@ const SpsSummary = ({ total, subtotal, tax, tips }) => {
     </table>
   );
 };
-const mapStateToProps = (state) => {
-  return calculateSummaryInfo(
-    state.order.order,
-    state.foodList.foodList,
-    state.order.tips,
-    state.order.taxRate
-  );
-};
-export default connect(mapStateToProps, null)(SpsSummary);
+export default SpsSummary;

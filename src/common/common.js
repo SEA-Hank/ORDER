@@ -12,12 +12,13 @@ export const calculateSummaryInfo = (orders, foodList, tips, taxRate) => {
       subtotal += foodInfo.price * orders[category][foodId];
     }
   }
-  tax = parseFloat((subtotal * taxRate).toFixed(2));
+  subtotal = toDecimal(subtotal);
+  tax = toDecimal(subtotal * taxRate);
   totalWithoutTips = tax + subtotal;
   tipVal =
     tips.caculateType === TipCaculateType.EXACT
       ? tips.value
-      : parseFloat((totalWithoutTips * tips.value).toFixed(2));
+      : toDecimal(totalWithoutTips * tips.value);
 
   total = totalWithoutTips + tipVal;
   return {
@@ -25,6 +26,20 @@ export const calculateSummaryInfo = (orders, foodList, tips, taxRate) => {
     totalWithoutTips,
     total,
     tax,
-    tips: tips.isShow ? tipVal : 0,
+    tips: tipVal,
+    isShowTips: tips.isShow,
   };
+};
+export const toDecimal = (number, decimal = 2) => {
+  return parseFloat(number.toFixed(decimal));
+};
+
+export const scrollToBottom = () => {
+  setTimeout(() => {
+    window.scrollTo({
+      top: document.body.clientHeight,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, 0);
 };

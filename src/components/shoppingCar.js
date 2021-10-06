@@ -1,15 +1,17 @@
 import "../scss/shoppingCar.scss";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle, faSearch } from "@fortawesome/free-solid-svg-icons";
 import SpcCategory from "./spcCategory";
 import SpcSummary from "./spcSummary";
 import SpcEditor from "./SpcEditor";
-
+import { calculateSummaryInfo, scrollToBottom } from "../common/common";
 import Payment from "./payment";
-const ShoppingCar = ({ order }) => {
+const ShoppingCar = ({ order, SummaryInfo }) => {
   let popUpEL = useRef(null);
+  const [showPayment, setShowPayment] = useState(false);
+
   let isEmpty = true;
   var isShowGategory = (items) => {
     for (let key in items) {
@@ -37,8 +39,10 @@ const ShoppingCar = ({ order }) => {
     }
     return categories;
   };
+
   const checkOutClick = () => {
-    popUpEL.current.show();
+    setShowPayment(true);
+    scrollToBottom();
   };
   return (
     <div className="shoppingcar-wrapper">
@@ -53,7 +57,7 @@ const ShoppingCar = ({ order }) => {
         {!isEmpty && (
           <>
             <div className="spc-summary">
-              <SpcSummary />
+              <SpcSummary {...SummaryInfo} />
             </div>
             <div className="spc-comfirm">
               <button onClick={checkOutClick}>checkout</button>
@@ -62,13 +66,23 @@ const ShoppingCar = ({ order }) => {
         )}
         {isEmpty && <div className="spc-empty">EMPTY</div>}
       </div>
-      <SpcEditor ref={popUpEL}></SpcEditor>
-      <Payment></Payment>
+      {!isEmpty && (
+        <>
+          {showPayment && <Payment SummaryInfo={SummaryInfo}></Payment>}
+          <SpcEditor ref={popUpEL}></SpcEditor>
+        </>
+      )}
     </div>
   );
 };
 const mapStateToProps = (state) => {
-  return { order: state.order.order };
+  let SummaryInfo = calculateSummaryInfo(
+    state.order.order,
+    state.foodList.foodList,
+    state.order.tips,
+    state.order.taxRate
+  );
+  return { order: state.order.order, SummaryInfo };
 };
 
 export default connect(mapStateToProps, {})(ShoppingCar);

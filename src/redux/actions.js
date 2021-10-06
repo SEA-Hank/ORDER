@@ -8,6 +8,7 @@ import {
   OD_SET_ORDER,
   OD_SET_EDITOR,
   OD_SET_TIPS,
+  OD_SUBMIT,
 } from "./actionTypes";
 import communication from "../common/communication";
 
@@ -101,7 +102,11 @@ export const setOrderTips = (value, caculateType, isShow = true) => ({
   type: OD_SET_TIPS,
   payload: {
     isShow,
-    caculateType, //value or percentage
+    caculateType,
     value,
   },
 });
+
+export const asyncOrderSubmit = (paymentInfo, summaryInfo) => {
+  return (dispatch, getState) => {};
+};

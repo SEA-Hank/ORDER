@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { setOrderTips } from "../redux/actions";
 import { calculateSummaryInfo } from "../common/common";
 import { TipCaculateType } from "../redux/actionTypes";
-const TipSelector = ({ totalWithoutTips, setOrderTips }) => {
+const TipSelector = ({ totalWithoutTips, setOrderTips, onchange }) => {
   let tipsOption = {
     "0%": 0,
     "10%": 0.1,
@@ -22,22 +22,30 @@ const TipSelector = ({ totalWithoutTips, setOrderTips }) => {
   const inputChange = (event) => {
     let val = event.target.value;
     if (val === "" || tipReg.test(val)) {
-      setValue(val);
-      let tips = val === "" ? 0 : parseFloat(val);
-      setOrderTips(tips, TipCaculateType.EXACT);
-      setActivatedIndex(null);
-      setCaculateType(TipCaculateType.EXACT);
-      setCaculateTypeValue(tips);
+      let tips = parseFloat(val) || 0;
+      updateState(tips, val, null, TipCaculateType.EXACT, tips);
+      onchange(true);
     }
   };
 
   const optionSelected = (value, index) => {
     let tips = parseFloat((totalWithoutTips * value).toFixed(2));
-    setOrderTips(value, TipCaculateType.PERCENTAGE);
-    setValue(tips);
-    setActivatedIndex(index);
-    setCaculateType(TipCaculateType.PERCENTAGE);
-    setCaculateTypeValue(value);
+    updateState(value, tips, index, TipCaculateType.PERCENTAGE, value);
+    onchange(true);
+  };
+
+  const updateState = (
+    tips,
+    val,
+    activatedIndex,
+    caculateType,
+    caculateTypeValue
+  ) => {
+    setOrderTips(tips, caculateType);
+    setValue(val);
+    setActivatedIndex(activatedIndex);
+    setCaculateType(caculateType);
+    setCaculateTypeValue(caculateTypeValue);
   };
 
   const generateLi = () => {
@@ -95,14 +103,4 @@ const TipSelector = ({ totalWithoutTips, setOrderTips }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  let { totalWithoutTips } = calculateSummaryInfo(
-    state.order.order,
-    state.foodList.foodList,
-    state.order.tips,
-    state.order.taxRate
-  );
-  return { totalWithoutTips };
-};
-
-export default connect(mapStateToProps, { setOrderTips })(TipSelector);
+export default connect(null, { setOrderTips })(TipSelector);
