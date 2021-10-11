@@ -1,5 +1,7 @@
 import {
   SYS_AJAX_ERROR,
+  SYS_FETCH_DATA,
+  STATUS,
   HD_BTN_TRIGLE,
   HD_SET_TITLE,
   CG_ACTIVATED_INDEX,
@@ -9,6 +11,8 @@ import {
   OD_SET_EDITOR,
   OD_SET_TIPS,
   OD_SUBMIT,
+  HOME_ENTER_ANIMATION,
+  OD_RESET,
 } from "./actionTypes";
 import communication from "../common/communication";
 
@@ -107,6 +111,65 @@ export const setOrderTips = (value, caculateType, isShow = true) => ({
   },
 });
 
+export const orderSubmit = (status, orderNumber) => ({
+  type: OD_SUBMIT,
+  payload: { status, orderNumber },
+});
+
+export const orderReset = () => ({
+  type: OD_RESET,
+});
+
 export const asyncOrderSubmit = (paymentInfo, summaryInfo) => {
-  return (dispatch, getState) => {};
+  return (dispatch, getState) => {
+    let { order } = getState();
+    communication({
+      method: "post",
+      url: "/ordersubmit",
+      data: { paymentInfo, summaryInfo, order: order.order },
+      dispatch,
+    }).then((data) => {
+      dispatch(orderSubmit(STATUS.SUCCESS, data.orderNumber));
+    });
+  };
 };
+
+export const setFetchDataStatus = (status) => ({
+  type: SYS_FETCH_DATA,
+  payload: status,
+});
+
+export const asyncFetchSysData = () => {
+  return (dispatch) => {
+    let promiseTitle = communication({
+      method: "get",
+      url: "/getTitle",
+      dispatch,
+    });
+    let promiseCategories = communication({
+      method: "get",
+      url: "/getcategories",
+      dispatch,
+    });
+    let promiseFoodlist = communication({
+      method: "get",
+      url: "/getfoodlist",
+      dispatch,
+    });
+    Promise.all([promiseTitle, promiseCategories, promiseFoodlist])
+      .then((values) => {
+        dispatch(setTitle(values[0].title));
+        dispatch(setCategories(values[1]));
+        dispatch(setFoodList(values[2]));
+        dispatch(setFetchDataStatus(STATUS.SUCCESS));
+      })
+      .catch(() => {
+        dispatch(setFetchDataStatus(STATUS.FAILURE));
+      });
+  };
+};
+
+export const setHomeEnterAnimation = (status) => ({
+  type: HOME_ENTER_ANIMATION,
+  payload: status,
+});

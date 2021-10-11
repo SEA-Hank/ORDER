@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
-import { hdBtnTrigle, asyncGetTitle } from "../redux/actions";
+import { hdBtnTrigle } from "../redux/actions";
 import { useLocation, useHistory } from "react-router-dom";
-const Header = ({ title, asyncGetTitle }) => {
+const Header = ({ title }) => {
   let location = useLocation();
   let history = useHistory();
 
@@ -16,10 +16,6 @@ const Header = ({ title, asyncGetTitle }) => {
   }, [location]);
 
   useEffect(() => {
-    if (!title) {
-      asyncGetTitle();
-      return;
-    }
     document.title = title;
   }, [title]);
 
@@ -41,4 +37,4 @@ const Header = ({ title, asyncGetTitle }) => {
 const mapStateToProps = (state) => {
   return state.header;
 };
-export default connect(mapStateToProps, { asyncGetTitle, hdBtnTrigle })(Header);
+export default connect(mapStateToProps, { hdBtnTrigle })(Header);

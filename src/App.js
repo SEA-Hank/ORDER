@@ -1,34 +1,28 @@
 import "./scss/cssReset.scss";
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Header from "./components/header";
-import Category from "./components/category";
-import FoodList from "./components/foodList";
-import CheckOut from "./components/checkOut";
-import ShoppingCar from "./components/shoppingCar";
-function App() {
+
+import Loading from "./components/loading";
+import Main from "./components/main";
+import { useEffect } from "react";
+import { asyncFetchSysData } from "./redux/actions";
+import { STATUS } from "./redux/actionTypes";
+import { connect } from "react-redux";
+import Thanks from "./components/thanks";
+function App({ asyncFetchSysData, status }) {
+  useEffect(() => {
+    if (status === STATUS.PENDING) {
+      asyncFetchSysData();
+    }
+  }, []);
+
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Router>
-          <Route path="/">
-            <Header />
-          </Route>
-          <Switch>
-            <Route path="/checkout">
-              <ShoppingCar />
-            </Route>
-            <Route path="/">
-              <Category />
-              <FoodList />
-              <CheckOut />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
-    </Provider>
+    //<Thanks />
+    <>
+      {status === STATUS.PENDING && <Loading />}
+      {status === STATUS.SUCCESS && <Main />}
+    </>
   );
 }
-
-export default App;
+const mapStateToProps = (state) => {
+  return state.app;
+};
+export default connect(mapStateToProps, { asyncFetchSysData })(App);

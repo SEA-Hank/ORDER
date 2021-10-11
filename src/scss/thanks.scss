@@ -1,0 +1,24 @@
+@import "./app.scss";
+.thanks {
+  text-align: center;
+  margin-top: 150px;
+  P {
+    padding: 15px;
+    &.ordernum {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+    &.words {
+      font-size: 3rem;
+      color: $primeTheme;
+      font-weight: 800;
+    }
+    &.time {
+      color: #9c9c9c;
+    }
+    .btnOA {
+      @extend %primeButton;
+      padding: 10px;
+    }
+  }
+}

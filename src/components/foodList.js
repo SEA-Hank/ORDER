@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { asyncGetFoodList } from "../redux/actions";
 import { useEffect, useCallback } from "react";
 
-const FoodList = ({ foodList, asyncGetFoodList }) => {
+const FoodList = ({ foodList }) => {
   const scrollObserver = {
     isLock: false,
     unLockTime: 500,
@@ -15,11 +15,6 @@ const FoodList = ({ foodList, asyncGetFoodList }) => {
       }, this.unLockTime);
     },
   };
-  useEffect(() => {
-    if (!foodList) {
-      asyncGetFoodList();
-    }
-  }, [foodList]);
 
   let generateCategories = useCallback(() => {
     let index = 0;
@@ -48,4 +43,4 @@ const mapStateToProps = (state) => {
   return state.foodList;
 };
 
-export default connect(mapStateToProps, { asyncGetFoodList })(FoodList);
+export default connect(mapStateToProps, null)(FoodList);

@@ -34,3 +34,20 @@ $fontColor: #4c4c4c;
     transform: translateY(0px);
   }
 }
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+%rotaing {
+  animation-name: rotating;
+  animation-iteration-count: infinite;
+  animation-duration: 1.8s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}

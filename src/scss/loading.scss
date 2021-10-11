@@ -1,0 +1,28 @@
+@import "./app.scss";
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-wrapper {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .loading-image {
+    @extend %rotaing;
+    position: relative;
+    svg {
+      font-size: 3rem;
+      color: $primeTheme;
+    }
+  }
+}

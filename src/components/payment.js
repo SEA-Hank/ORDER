@@ -1,8 +1,14 @@
 import "../scss/payment.scss";
 import TipSelector from "./tipSelector";
 import Input from "../common/input";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { scrollToBottom } from "../common/common";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { asyncOrderSubmit } from "../redux/actions";
+import { STATUS } from "../redux/actionTypes";
 const PaymentStepWrapper = (props) => {
   return (
     <div className={`paymentStep-wrapper ${props.customClass || ""}`}>
@@ -15,24 +21,36 @@ const PaymentStepWrapper = (props) => {
   );
 };
 
-const Payment = ({ SummaryInfo }) => {
+const Payment = ({ SummaryInfo, asyncOrderSubmit, status }) => {
+  let history = useHistory();
   const userNameEl = useRef(null);
   const phoneNumEl = useRef(null);
   const cardNumEl = useRef(null);
   const expirationEl = useRef(null);
   const cvcEl = useRef(null);
   const [showPaymentInfo, setShowPaymentInfo] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  useEffect(() => {
+    if (status === STATUS.SUCCESS) {
+      history.replace("/thanks");
+    }
+  }, [status]);
 
   const subBtnClick = () => {
-    let formEls = [userNameEl, phoneNumEl, cardNumEl, expirationEl, cvcEl];
-    let isReady = true;
-    let paymentInfo = {};
-    formEls.forEach((ele) => {
-      let checkRes = ele.current.check();
-      isReady = isReady && checkRes[0];
-      paymentInfo[checkRes[2]] = paymentInfo[1];
-    });
-    if (isReady) {
+    if (!isProcessing) {
+      let formEls = [userNameEl, phoneNumEl, cardNumEl, expirationEl, cvcEl];
+      let isReady = true;
+      let paymentInfo = {};
+      formEls.forEach((ele) => {
+        let checkRes = ele.current.check();
+        isReady = isReady && checkRes[0];
+        paymentInfo[checkRes[2]] = paymentInfo[1];
+      });
+      if (isReady) {
+        setIsProcessing(true);
+        asyncOrderSubmit();
+      }
     }
   };
 
@@ -55,6 +73,7 @@ const Payment = ({ SummaryInfo }) => {
                 name="name"
                 ref={userNameEl}
                 errorMsg="please input your name"
+                allowInput={!isProcessing}
               />
 
               <Input
@@ -64,6 +83,7 @@ const Payment = ({ SummaryInfo }) => {
                 name="phone"
                 errorMsg="phone format should be (xxx)xxx-xxxx"
                 ref={phoneNumEl}
+                allowInput={!isProcessing}
               />
             </div>
           </PaymentStepWrapper>
@@ -85,6 +105,7 @@ const Payment = ({ SummaryInfo }) => {
                   textReg={/^\d{2}\/\d{2}$/}
                   name="expiratioin"
                   ref={expirationEl}
+                  allowInput={!isProcessing}
                 />
                 <Input
                   description="CVC"
@@ -93,6 +114,7 @@ const Payment = ({ SummaryInfo }) => {
                   name="cvc"
                   errorMsg="expiratioin format should be xxx"
                   ref={cvcEl}
+                  allowInput={!isProcessing}
                 />
               </div>
             </div>
@@ -102,7 +124,14 @@ const Payment = ({ SummaryInfo }) => {
           </p>
           <div>
             <button className="payment-submit-btn" onClick={subBtnClick}>
-              SUBMIT
+              {isProcessing ? (
+                <span>
+                  <FontAwesomeIcon icon={faSpinner} />
+                  <i>PROCESSING...</i>
+                </span>
+              ) : (
+                "SUBMIT"
+              )}
             </button>
           </div>
         </div>
@@ -110,4 +139,9 @@ const Payment = ({ SummaryInfo }) => {
     </div>
   );
 };
-export default Payment;
+const mapStateToProps = (state) => {
+  let { order } = state;
+  return { status: order.status };
+};
+
+export default connect(mapStateToProps, { asyncOrderSubmit })(Payment);

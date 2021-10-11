@@ -2,7 +2,7 @@ import "../scss/shoppingCar.scss";
 import { useRef, useState } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import SpcCategory from "./spcCategory";
 import SpcSummary from "./spcSummary";
 import SpcEditor from "./SpcEditor";
@@ -85,4 +85,4 @@ const mapStateToProps = (state) => {
   return { order: state.order.order, SummaryInfo };
 };
 
-export default connect(mapStateToProps, {})(ShoppingCar);
+export default connect(mapStateToProps, null)(ShoppingCar);

@@ -1,4 +1,12 @@
-import { OD_SET_ORDER, OD_SET_EDITOR, OD_SET_TIPS } from "../actionTypes";
+import {
+  OD_SET_ORDER,
+  OD_SET_EDITOR,
+  OD_SET_TIPS,
+  TipCaculateType,
+  OD_RESET,
+  STATUS,
+  OD_SUBMIT,
+} from "../actionTypes";
 const initialState = {
   /*
 order schema
@@ -25,7 +33,7 @@ order schema
   taxRate: 0.1,
   tips: {
     isShow: false,
-    caculateType: "exact", //exact or percentage
+    caculateType: TipCaculateType.EXACT,
     value: 0,
   },
   editor: {
@@ -33,6 +41,8 @@ order schema
     quantity: 0,
     category: null,
   },
+  status: STATUS.PENDING,
+  orderNumber: null,
 };
 
 export default function (state = initialState, actions) {
@@ -57,6 +67,14 @@ export default function (state = initialState, actions) {
       return {
         ...state,
         tips: { ...actions.payload },
+      };
+    case OD_RESET:
+      return initialState;
+    case OD_SUBMIT:
+      return {
+        ...state,
+        status: actions.payload.status,
+        orderNumber: actions.payload.orderNumber,
       };
     default:
       return state;

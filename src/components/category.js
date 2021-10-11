@@ -1,9 +1,8 @@
 import "../scss/category.scss";
 import { connect } from "react-redux";
-import { asyncGetCategory } from "../redux/actions";
 import CategoryItem from "./categoryItem";
 import { useEffect, useState, useRef } from "react";
-const Category = ({ local, categories, asyncGetCategory }) => {
+const Category = ({ local, categories }) => {
   const wrapperEl = useRef(null);
   const ulEl = useRef(null);
   const [markerPst, setMarkerPst] = useState("0px");
@@ -32,10 +31,6 @@ const Category = ({ local, categories, asyncGetCategory }) => {
   };
 
   useEffect(() => {
-    if (isNaN(local.activatedIndex)) {
-      asyncGetCategory();
-      return;
-    }
     var pstObj = new ComputePst();
 
     let sccrollObj = {
@@ -86,4 +81,4 @@ const mapStateToProps = (state) => {
   return state.category;
 };
 
-export default connect(mapStateToProps, { asyncGetCategory })(Category);
+export default connect(mapStateToProps, null)(Category);
