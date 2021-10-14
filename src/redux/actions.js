@@ -1,6 +1,7 @@
 import {
   SYS_AJAX_ERROR,
   SYS_FETCH_DATA,
+  SYS_RELOAD_DATA,
   STATUS,
   HD_BTN_TRIGLE,
   HD_SET_TITLE,
@@ -168,6 +169,10 @@ export const asyncFetchSysData = () => {
       });
   };
 };
+
+export const sysReloadData = () => ({
+  type: SYS_RELOAD_DATA,
+});
 
 export const setHomeEnterAnimation = (status) => ({
   type: HOME_ENTER_ANIMATION,

@@ -8,10 +8,10 @@ const ANIMATION_MAP = {
   REPLACE: "bottom",
 };
 
-const SceneSwitch = withRouter(({ location, history, children }) => {
+const SceneSwitch = withRouter(({ location, history, children, className }) => {
   return (
     <TransitionGroup
-      className="scene-switch-wrapper"
+      className={className}
       childFactory={(child) =>
         React.cloneElement(child, {
           classNames: ANIMATION_MAP[history.action],

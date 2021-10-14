@@ -1,0 +1,21 @@
+@import "./app.scss";
+.error-wrapper {
+  text-align: center;
+  .error-logo {
+    svg {
+      font-size: 8rem;
+      color: $primeTheme;
+    }
+    margin-top: 150px;
+  }
+  .error-words {
+    padding: 25px 0px;
+    color: $primeTheme;
+    font-size: 1rem;
+  }
+  .btn-reload {
+    @extend %primeButton;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
+}

@@ -1,5 +1,6 @@
 export const SYS_AJAX_ERROR = "SYS_AJAX_ERROR";
 export const SYS_FETCH_DATA = "SYS_FETCH_DATA";
+export const SYS_RELOAD_DATA = "SYS_RELOAD_DATA";
 
 export const HOME_ENTER_ANIMATION = "HOME_ENTER_ANIMATION";
 
