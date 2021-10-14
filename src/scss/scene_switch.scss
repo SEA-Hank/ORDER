@@ -1,0 +1,71 @@
+.scene-switch-wrapper {
+  position: relative;
+  flex-grow: 1;
+  overflow: hidden;
+
+  > div {
+    height: 100%;
+    width: 100vw;
+    overflow-y: scroll;
+  }
+
+  .forward-enter {
+    transform: translateX(100%);
+  }
+
+  .forward-enter-active {
+    transform: translateX(0);
+    transition: all 500ms;
+  }
+
+  .forward-exit {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transform: translate(0%, 0%);
+  }
+
+  .forward-exit-active {
+    transform: translate(-100%, 0%);
+    transition: all 500ms;
+  }
+
+  .back-enter {
+    transform: translate(-100%, 0%);
+  }
+
+  .back-enter-active {
+    transform: translate(0%, 0%);
+    transition: all 500ms;
+  }
+
+  .back-exit {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transform: translate(0%, 0%);
+  }
+
+  .back-exit-active {
+    transform: translate(100%, 0%);
+    transition: all 500ms;
+  }
+
+  .bottom-enter {
+    transform: translateY(100%);
+  }
+  .bottom-enter-active {
+    transform: translateY(0);
+    transition: all 500ms;
+  }
+  .bottom-exit {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transform: translate(0%, 0%);
+  }
+  .bottom-exit-active {
+    transform: translate(0%, -100%);
+    transition: all 500ms;
+  }
+}

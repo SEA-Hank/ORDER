@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { asyncFetchSysData } from "./redux/actions";
 import { STATUS } from "./redux/actionTypes";
 import { connect } from "react-redux";
-import Thanks from "./components/thanks";
+
 function App({ asyncFetchSysData, status }) {
   useEffect(() => {
     if (status === STATUS.PENDING) {

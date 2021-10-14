@@ -7,7 +7,7 @@ const Category = ({ local, categories }) => {
   const ulEl = useRef(null);
   const [markerPst, setMarkerPst] = useState("0px");
 
-  let ComputePst = function () {
+  let computePst = function () {
     let activeItem = ulEl.current.children[local.activatedIndex];
 
     let offsetLeft = activeItem.offsetLeft;
@@ -31,7 +31,7 @@ const Category = ({ local, categories }) => {
   };
 
   useEffect(() => {
-    var pstObj = new ComputePst();
+    var pstObj = new computePst();
 
     let sccrollObj = {
       top: 0,

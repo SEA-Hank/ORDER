@@ -34,10 +34,10 @@ export const toDecimal = (number, decimal = 2) => {
   return parseFloat(number.toFixed(decimal));
 };
 
-export const scrollToBottom = () => {
+export const scrollToBottom = (domEle) => {
   setTimeout(() => {
-    window.scrollTo({
-      top: document.body.clientHeight,
+    domEle.scrollTo({
+      top: domEle.scrollHeight,
       left: 0,
       behavior: "smooth",
     });

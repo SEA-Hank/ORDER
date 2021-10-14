@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { setCGActivatedIndex } from "../redux/actions";
 const FoodCategory = (props) => {
-  const GAP = 100;
+  const GAP = 150;
   let {
     title,
     itmes,
@@ -12,11 +12,12 @@ const FoodCategory = (props) => {
     activatedIndex,
     isActivatedByClick,
     scrollObserver,
+    homeEl,
   } = props;
   const titleEl = useRef(null);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    homeEl.current.addEventListener("scroll", () => {
       if (!scrollObserver.isLock && titleEl.current) {
         let top = titleEl.current.getBoundingClientRect().top;
         if (top <= GAP && top > 0) {
@@ -30,8 +31,8 @@ const FoodCategory = (props) => {
     if (activatedIndex === index && isActivatedByClick) {
       let top = titleEl.current.getBoundingClientRect().top;
       scrollObserver.lockScrollEvent();
-      window.scrollTo({
-        top: document.documentElement.scrollTop + top - GAP,
+      homeEl.current.scrollTo({
+        top: top + homeEl.current.scrollTop - GAP,
         left: 0,
         behavior: "smooth",
       });

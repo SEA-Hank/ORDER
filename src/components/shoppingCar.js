@@ -10,8 +10,8 @@ import { calculateSummaryInfo, scrollToBottom } from "../common/common";
 import Payment from "./payment";
 const ShoppingCar = ({ order, SummaryInfo }) => {
   let popUpEL = useRef(null);
+  let shoppingCarEle = useRef();
   const [showPayment, setShowPayment] = useState(false);
-
   let isEmpty = true;
   var isShowGategory = (items) => {
     for (let key in items) {
@@ -42,10 +42,10 @@ const ShoppingCar = ({ order, SummaryInfo }) => {
 
   const checkOutClick = () => {
     setShowPayment(true);
-    scrollToBottom();
+    scrollToBottom(shoppingCarEle.current);
   };
   return (
-    <div className="shoppingcar-wrapper">
+    <div ref={shoppingCarEle} className="shoppingcar-wrapper">
       <div className="shoppingcar-detail">
         <div className="spc-detail-title">
           <p className="words">Your Order</p>
@@ -68,7 +68,12 @@ const ShoppingCar = ({ order, SummaryInfo }) => {
       </div>
       {!isEmpty && (
         <>
-          {showPayment && <Payment SummaryInfo={SummaryInfo}></Payment>}
+          {showPayment && (
+            <Payment
+              SummaryInfo={SummaryInfo}
+              shoppingCarEle={shoppingCarEle}
+            ></Payment>
+          )}
           <SpcEditor ref={popUpEL}></SpcEditor>
         </>
       )}

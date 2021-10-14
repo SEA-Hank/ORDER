@@ -5,18 +5,23 @@ import CheckOut from "../checkOut";
 import { setHomeEnterAnimation } from "../../redux/actions";
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import { useRef } from "react";
 
 const Home = ({ enterAnimation, setHomeEnterAnimation }) => {
-  useEffect(() => {
-    setTimeout(() => {
-      setHomeEnterAnimation(false);
-    }, 1000);
-  }, []);
+  const homeEl = useRef();
+
+  const onTransitionEnd = () => {
+    setHomeEnterAnimation(false);
+  };
 
   return (
-    <div className={`home ${enterAnimation ? "fakeIn" : ""}`}>
+    <div
+      ref={homeEl}
+      onTransitionEnd={onTransitionEnd}
+      className={`home ${enterAnimation ? "fakeIn" : ""}`}
+    >
       <Category />
-      <FoodList />
+      <FoodList homeEl={homeEl} />
       <CheckOut />
     </div>
   );

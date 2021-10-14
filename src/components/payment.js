@@ -21,7 +21,7 @@ const PaymentStepWrapper = (props) => {
   );
 };
 
-const Payment = ({ SummaryInfo, asyncOrderSubmit, status }) => {
+const Payment = ({ SummaryInfo, asyncOrderSubmit, status, shoppingCarEle }) => {
   let history = useHistory();
   const userNameEl = useRef(null);
   const phoneNumEl = useRef(null);
@@ -56,7 +56,7 @@ const Payment = ({ SummaryInfo, asyncOrderSubmit, status }) => {
 
   const tipsOnChange = (val) => {
     setShowPaymentInfo(val);
-    scrollToBottom();
+    scrollToBottom(shoppingCarEle.current);
   };
 
   return (

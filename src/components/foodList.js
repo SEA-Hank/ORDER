@@ -3,8 +3,11 @@ import FoodCategory from "./foodCategory";
 import { connect } from "react-redux";
 import { asyncGetFoodList } from "../redux/actions";
 import { useEffect, useCallback } from "react";
+import { useRef } from "react";
 
-const FoodList = ({ foodList }) => {
+const FoodList = ({ foodList, homeEl }) => {
+  const flEle = useRef();
+
   const scrollObserver = {
     isLock: false,
     unLockTime: 500,
@@ -28,6 +31,7 @@ const FoodList = ({ foodList }) => {
             key={key}
             title={key}
             itmes={foodList[key]}
+            homeEl={homeEl}
           />
         );
         index++;
@@ -36,7 +40,11 @@ const FoodList = ({ foodList }) => {
     return categories;
   }, [foodList]);
 
-  return <div className="foodlist">{generateCategories()}</div>;
+  return (
+    <div ref={flEle} className="foodlist">
+      {generateCategories()}
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
