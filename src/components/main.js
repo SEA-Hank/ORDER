@@ -5,12 +5,12 @@ import Header from "./header";
 import ShoppingCar from "./shoppingCar";
 import Thanks from "./thanks";
 import SceneSwitch from "../common/SceneSwitch";
-
+import { main_config } from "../common/scene_switch_config";
 const Main = () => {
   return (
     <div className="main">
       <Route path="/" component={Header} />
-      <SceneSwitch className="scene-switch-wrapper">
+      <SceneSwitch className="scene-switch-wrapper" config={main_config}>
         <Route path="/thanks" component={Thanks} />
         <Route path="/checkout" component={ShoppingCar} />
         <Route path="/" component={Home} />

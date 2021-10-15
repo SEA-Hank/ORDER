@@ -2,26 +2,36 @@ import { Switch, withRouter } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import React from "react";
 import "../scss/scene_switch.scss";
-const ANIMATION_MAP = {
-  PUSH: "forward",
-  POP: "back",
-  REPLACE: "bottom",
-};
+import { useEffect, useState } from "react";
 
-const SceneSwitch = withRouter(({ location, history, children, className }) => {
-  return (
-    <TransitionGroup
-      className={className}
-      childFactory={(child) =>
-        React.cloneElement(child, {
-          classNames: ANIMATION_MAP[history.action],
-        })
+const SceneSwitch = withRouter(
+  ({ location, history, children, className, config = {} }) => {
+    const [key, setKey] = useState();
+    const getAnimationClassName = () => {
+      return config[location.pathname]?.[history.action];
+    };
+
+    let animationClassName = getAnimationClassName();
+    if (animationClassName) {
+      if (key !== location.pathname) {
+        setKey(location.pathname);
       }
-    >
-      <CSSTransition timeout={500} key={location.pathname}>
-        <Switch location={location}>{children}</Switch>
-      </CSSTransition>
-    </TransitionGroup>
-  );
-});
+    }
+
+    return (
+      <TransitionGroup
+        className={className}
+        childFactory={(child) =>
+          React.cloneElement(child, {
+            classNames: animationClassName,
+          })
+        }
+      >
+        <CSSTransition timeout={500} key={key}>
+          <Switch location={location}>{children}</Switch>
+        </CSSTransition>
+      </TransitionGroup>
+    );
+  }
+);
 export default SceneSwitch;
