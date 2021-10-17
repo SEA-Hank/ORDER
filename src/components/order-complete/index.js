@@ -1,9 +1,9 @@
-import "../scss/thanks.scss";
+import "../../scss/order_complete.scss";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { orderReset } from "../redux/actions";
+import { orderReset } from "../../redux/actions";
 import { useEffect } from "react";
-const Thanks = ({ orderNumber, orderReset }) => {
+const OrderComplete = ({ orderNumber, orderReset }) => {
   let history = useHistory();
   const btnClick = () => {
     history.goBack();
@@ -29,4 +29,4 @@ const Thanks = ({ orderNumber, orderReset }) => {
 const mapStateToProps = (state) => {
   return { orderNumber: state.order.orderNumber };
 };
-export default connect(mapStateToProps, { orderReset })(Thanks);
+export default connect(mapStateToProps, { orderReset })(OrderComplete);

@@ -1,9 +1,9 @@
-import "../scss/header.scss";
+import "../../scss/header.scss";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
-import { hdBtnTrigle } from "../redux/actions";
+import { hdBtnTrigle } from "../../redux/actions";
 import { useLocation, useHistory } from "react-router-dom";
 const Header = ({ title }) => {
   let location = useLocation();

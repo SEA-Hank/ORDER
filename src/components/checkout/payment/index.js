@@ -1,25 +1,15 @@
-import "../scss/payment.scss";
-import TipSelector from "./tipSelector";
-import Input from "../common/input";
+import "../../../scss/payment.scss";
+import TipsSelector from "./TipsSelector";
+import Input from "../../../utils/Input";
 import { useEffect, useRef, useState } from "react";
-import { scrollToBottom } from "../common/common";
+import { scrollToBottom } from "../../../utils/common";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { asyncOrderSubmit } from "../redux/actions";
-import { STATUS } from "../redux/actionTypes";
-const PaymentStepWrapper = (props) => {
-  return (
-    <div className={`paymentStep-wrapper ${props.customClass || ""}`}>
-      <div className="payment-step">
-        <div className="vertical-line"></div>
-        <span>{props.step}</span>
-      </div>
-      <div className="payment-content">{props.children}</div>
-    </div>
-  );
-};
+import { asyncOrderSubmit } from "../../../redux/actions";
+import { STATUS } from "../../../redux/actionTypes";
+import SetpWrapper from "./SetpWrapper";
 
 const Payment = ({ SummaryInfo, asyncOrderSubmit, status, shoppingCarEle }) => {
   let history = useHistory();
@@ -33,7 +23,7 @@ const Payment = ({ SummaryInfo, asyncOrderSubmit, status, shoppingCarEle }) => {
 
   useEffect(() => {
     if (status === STATUS.SUCCESS) {
-      history.replace("/thanks");
+      history.replace("/ordercomplete");
     }
   }, [status]);
 
@@ -61,12 +51,12 @@ const Payment = ({ SummaryInfo, asyncOrderSubmit, status, shoppingCarEle }) => {
 
   return (
     <div className="payment-wrapper">
-      <PaymentStepWrapper step="1" customClass="fadeIn">
-        <TipSelector {...SummaryInfo} onchange={tipsOnChange} />
-      </PaymentStepWrapper>
+      <SetpWrapper step="1" customClass="fadeIn">
+        <TipsSelector {...SummaryInfo} onchange={tipsOnChange} />
+      </SetpWrapper>
       {showPaymentInfo && (
         <div className="payment-info fadeIn">
-          <PaymentStepWrapper step="2">
+          <SetpWrapper step="2">
             <div className="payment-userInfo">
               <Input
                 description="Your Name"
@@ -86,8 +76,8 @@ const Payment = ({ SummaryInfo, asyncOrderSubmit, status, shoppingCarEle }) => {
                 allowInput={!isProcessing}
               />
             </div>
-          </PaymentStepWrapper>
-          <PaymentStepWrapper step="3">
+          </SetpWrapper>
+          <SetpWrapper step="3">
             <div className="payment-cardInfo">
               <Input
                 description="Card Number"
@@ -118,7 +108,7 @@ const Payment = ({ SummaryInfo, asyncOrderSubmit, status, shoppingCarEle }) => {
                 />
               </div>
             </div>
-          </PaymentStepWrapper>
+          </SetpWrapper>
           <p className="payment-total">
             Total: ${SummaryInfo.total.toFixed(2)}
           </p>

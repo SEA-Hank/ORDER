@@ -1,14 +1,13 @@
-import "../scss/shoppingCar.scss";
+import "../../scss/checkout.scss";
 import { useRef, useState } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import SpcCategory from "./spcCategory";
-import SpcSummary from "./spcSummary";
-import SpcEditor from "./SpcEditor";
-import { calculateSummaryInfo, scrollToBottom } from "../common/common";
+import Category, { ItemEditor } from "./category";
+import Summary from "./summary";
+import { calculateSummaryInfo, scrollToBottom } from "../../utils/common";
 import Payment from "./payment";
-const ShoppingCar = ({ order, SummaryInfo }) => {
+const Checkout = ({ order, SummaryInfo }) => {
   let popUpEL = useRef(null);
   let shoppingCarEle = useRef();
   const [showPayment, setShowPayment] = useState(false);
@@ -28,7 +27,7 @@ const ShoppingCar = ({ order, SummaryInfo }) => {
     for (let categoryName in order) {
       if (isShowGategory(order[categoryName])) {
         categories.push(
-          <SpcCategory
+          <Category
             key={categoryName}
             category={categoryName}
             items={order[categoryName]}
@@ -57,7 +56,7 @@ const ShoppingCar = ({ order, SummaryInfo }) => {
         {!isEmpty && (
           <>
             <div className="spc-summary">
-              <SpcSummary {...SummaryInfo} />
+              <Summary {...SummaryInfo} />
             </div>
             <div className="spc-comfirm">
               <button onClick={checkOutClick}>checkout</button>
@@ -74,7 +73,7 @@ const ShoppingCar = ({ order, SummaryInfo }) => {
               shoppingCarEle={shoppingCarEle}
             ></Payment>
           )}
-          <SpcEditor ref={popUpEL}></SpcEditor>
+          <ItemEditor ref={popUpEL}></ItemEditor>
         </>
       )}
     </div>
@@ -90,4 +89,4 @@ const mapStateToProps = (state) => {
   return { order: state.order.order, SummaryInfo };
 };
 
-export default connect(mapStateToProps, null)(ShoppingCar);
+export default connect(mapStateToProps, null)(Checkout);

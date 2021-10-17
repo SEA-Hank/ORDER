@@ -13,7 +13,7 @@ const main_config = {
     PUSH: ANIMATION_MAP["FromRight"],
     POP: ANIMATION_MAP["ToLeft"],
   },
-  "/thanks": {
+  "/ordercomplete": {
     REPLACE: ANIMATION_MAP["FromBottom"],
   },
 };

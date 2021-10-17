@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { setCGActivatedIndex } from "../redux/actions";
-const CategoryItem = ({ name, activated, index, setCGActivatedIndex }) => {
+import { setCGActivatedIndex } from "../../../redux/actions";
+const Item = ({ name, activated, index, setCGActivatedIndex }) => {
   return (
     <li
       onClick={() => {
@@ -13,4 +13,4 @@ const CategoryItem = ({ name, activated, index, setCGActivatedIndex }) => {
   );
 };
 
-export default connect(null, { setCGActivatedIndex })(CategoryItem);
+export default connect(null, { setCGActivatedIndex })(Item);

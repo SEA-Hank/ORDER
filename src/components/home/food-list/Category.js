@@ -1,8 +1,8 @@
-import FoodItem from "./foodItem";
+import FoodItem from "./Item";
 import { useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import { setCGActivatedIndex } from "../redux/actions";
-const FoodCategory = (props) => {
+import { setCGActivatedIndex } from "../../../redux/actions";
+const Category = (props) => {
   const GAP = 150;
   let {
     title,
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => {
   return { ...state.category.local };
 };
 
-export default connect(mapStateToProps, { setCGActivatedIndex })(FoodCategory);
+export default connect(mapStateToProps, { setCGActivatedIndex })(Category);

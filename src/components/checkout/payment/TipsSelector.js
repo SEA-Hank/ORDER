@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import "../scss/tipSelector.scss";
+import "../../../scss/tips_selector.scss";
 import { connect } from "react-redux";
-import { setOrderTips } from "../redux/actions";
-import { calculateSummaryInfo } from "../common/common";
-import { TipCaculateType } from "../redux/actionTypes";
-const TipSelector = ({ totalWithoutTips, setOrderTips, onchange }) => {
+import { setOrderTips } from "../../../redux/actions";
+import { TipCaculateType } from "../../../redux/actionTypes";
+const TipsSelector = ({ totalWithoutTips, setOrderTips, onchange }) => {
   let tipsOption = {
     "0%": 0,
     "10%": 0.1,
@@ -103,4 +102,4 @@ const TipSelector = ({ totalWithoutTips, setOrderTips, onchange }) => {
   );
 };
 
-export default connect(null, { setOrderTips })(TipSelector);
+export default connect(null, { setOrderTips })(TipsSelector);

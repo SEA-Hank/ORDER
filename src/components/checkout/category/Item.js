@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { setOrderEditor } from "../redux/actions";
-const SpcItem = ({ info, quantity, popUp, category, setOrderEditor }) => {
+import { setOrderEditor } from "../../../redux/actions";
+const Item = ({ info, quantity, popUp, category, setOrderEditor }) => {
   const showEditor = () => {
     setOrderEditor(info, quantity, category);
     popUp.current.show();
@@ -32,4 +32,4 @@ const mapStateToProps = (state, ownProp) => {
   return { info: info };
 };
 
-export default connect(mapStateToProps, { setOrderEditor })(SpcItem);
+export default connect(mapStateToProps, { setOrderEditor })(Item);

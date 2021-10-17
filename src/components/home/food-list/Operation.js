@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-import { setOrder } from "../redux/actions";
+import { setOrder } from "../../../redux/actions";
 import { connect } from "react-redux";
-const FoodOperation = ({ category, foodId, countOfOrder, setOrder }) => {
+const Operation = ({ category, foodId, countOfOrder, setOrder }) => {
   const Position = {
     UP: "-100px",
     DOWN: "0px",
@@ -65,4 +65,4 @@ const FoodOperation = ({ category, foodId, countOfOrder, setOrder }) => {
   );
 };
 
-export default connect(null, { setOrder })(FoodOperation);
+export default connect(null, { setOrder })(Operation);

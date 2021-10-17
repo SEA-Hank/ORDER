@@ -1,11 +1,11 @@
-import "../scss/checkout.scss";
+import "../../../scss/buttom.scss";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { hdBtnTrigle } from "../redux/actions";
-const CheckOut = ({ count, amount, hdBtnTrigle }) => {
+import { hdBtnTrigle } from "../../../redux/actions";
+const Buttom = ({ count, amount, hdBtnTrigle }) => {
   let [flash, setFlash] = useState(false);
   let history = useHistory();
   useEffect(() => {
@@ -51,4 +51,4 @@ const mapStateToProps = (state) => {
   return { count, amount };
 };
 
-export default connect(mapStateToProps, { hdBtnTrigle })(CheckOut);
+export default connect(mapStateToProps, { hdBtnTrigle })(Buttom);

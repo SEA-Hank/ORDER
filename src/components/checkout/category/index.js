@@ -1,11 +1,12 @@
-import SpcItem from "./spcItem";
-const SpcCategory = ({ category, items, popUp }) => {
+import Item from "./Item";
+import ItemEditor from "./ItemEditor";
+const Category = ({ category, items, popUp }) => {
   const generateItems = () => {
     let list = [];
     for (let foodId in items) {
       if (items[foodId] != 0)
         list.push(
-          <SpcItem
+          <Item
             key={foodId}
             category={category}
             foodId={foodId}
@@ -24,4 +25,5 @@ const SpcCategory = ({ category, items, popUp }) => {
   );
 };
 
-export default SpcCategory;
+export default Category;
+export { ItemEditor };

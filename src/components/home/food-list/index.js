@@ -1,8 +1,7 @@
-import "../scss/foodlist.scss";
-import FoodCategory from "./foodCategory";
+import "../../../scss/food_list.scss";
+import Category from "./Category";
 import { connect } from "react-redux";
-import { asyncGetFoodList } from "../redux/actions";
-import { useEffect, useCallback } from "react";
+import { useCallback } from "react";
 import { useRef } from "react";
 
 const FoodList = ({ foodList, homeEl }) => {
@@ -25,7 +24,7 @@ const FoodList = ({ foodList, homeEl }) => {
     if (foodList) {
       for (let key in foodList) {
         categories.push(
-          <FoodCategory
+          <Category
             scrollObserver={scrollObserver}
             index={index}
             key={key}

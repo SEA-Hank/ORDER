@@ -1,8 +1,7 @@
-import FoodOperation from "./foodOperation";
+import Operation from "./Operation";
 import { connect } from "react-redux";
-import {} from "../redux/actions";
-import { setOrder } from "../redux/actions";
-const FoodItem = (props) => {
+import { setOrder } from "../../../redux/actions";
+const Item = (props) => {
   let { id, category, name, description, img, price, countOfOrder } = props;
   let { setOrder } = props;
   let itemOnClick = () => {
@@ -22,11 +21,7 @@ const FoodItem = (props) => {
           $ <strong>{price.toFixed(2)}</strong>
         </p>
       </div>
-      <FoodOperation
-        category={category}
-        foodId={id}
-        countOfOrder={countOfOrder}
-      />
+      <Operation category={category} foodId={id} countOfOrder={countOfOrder} />
     </div>
   );
 };
@@ -36,4 +31,4 @@ const mapStateToProps = (state, ownProps) => {
   return { countOfOrder };
 };
 
-export default connect(mapStateToProps, { setOrder })(FoodItem);
+export default connect(mapStateToProps, { setOrder })(Item);

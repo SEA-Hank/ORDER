@@ -1,18 +1,18 @@
 import "../scss/main.scss";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./home/home";
+import { Route } from "react-router-dom";
+import Home from "./home";
 import Header from "./header";
-import ShoppingCar from "./shoppingCar";
-import Thanks from "./thanks";
-import SceneSwitch from "../common/SceneSwitch";
-import { main_config } from "../common/scene_switch_config";
+import Checkout from "./checkout";
+import OrderComplete from "./order-complete";
+import SceneSwitch from "../utils/SceneSwitch";
+import { main_config } from "../utils/scene_switch_config";
 const Main = () => {
   return (
     <div className="main">
       <Route path="/" component={Header} />
       <SceneSwitch className="scene-switch-wrapper" config={main_config}>
-        <Route path="/thanks" component={Thanks} />
-        <Route path="/checkout" component={ShoppingCar} />
+        <Route path="/ordercomplete" component={OrderComplete} />
+        <Route path="/checkout" component={Checkout} />
         <Route path="/" component={Home} />
       </SceneSwitch>
     </div>

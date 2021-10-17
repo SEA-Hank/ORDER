@@ -1,4 +1,4 @@
-const SpcSummaryItem = ({ title, amout, strong = false }) => {
+const Item = ({ title, amout, strong = false }) => {
   return (
     <tr className="summary-item">
       <td className={`sum-item-title ${strong ? "strong" : ""}`}>{title}</td>
@@ -6,4 +6,4 @@ const SpcSummaryItem = ({ title, amout, strong = false }) => {
     </tr>
   );
 };
-export default SpcSummaryItem;
+export default Item;

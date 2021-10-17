@@ -1,10 +1,10 @@
-import "../scss/spcEditor.scss";
+import "../../../scss/item_editor.scss";
 import { connect } from "react-redux";
-import withPopUp from "../common/widthPopUp";
-import Counter from "../common/counter";
+import withPopUp from "../../../utils/widthPopUp";
+import Counter from "../../../utils/counter";
 import { useEffect, useState } from "react";
-import { setOrder } from "../redux/actions";
-let SpcEditor = ({ popUp, foodInfo, quantity, category, setOrder }) => {
+import { setOrder } from "../../../redux/actions";
+let ItemEditor = ({ popUp, foodInfo, quantity, category, setOrder }) => {
   const [qty, setQty] = useState(quantity);
 
   useEffect(() => {
@@ -74,6 +74,6 @@ const mapStateToProps = (state, ownProp) => {
   return { ...state.order.editor };
 };
 
-SpcEditor = connect(mapStateToProps, { setOrder })(SpcEditor);
+ItemEditor = connect(mapStateToProps, { setOrder })(ItemEditor);
 
-export default withPopUp(SpcEditor);
+export default withPopUp(ItemEditor);

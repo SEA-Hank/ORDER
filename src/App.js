@@ -1,14 +1,13 @@
-import "./scss/cssReset.scss";
-
-import Loading from "./components/loading";
-import Main from "./components/main";
+import "./scss/css_reset.scss";
+import Loading from "./components/Loading";
+import Main from "./components/Main";
 import { useEffect } from "react";
 import { STATUS } from "./redux/actionTypes";
 import { connect } from "react-redux";
 import Error from "./components/Error";
-import { Route, withRouter, Switch } from "react-router-dom";
-import SceneSwitch from "./common/SceneSwitch";
-import { loading_config } from "./common/scene_switch_config";
+import { Route, withRouter } from "react-router-dom";
+import SceneSwitch from "./utils/SceneSwitch";
+import { loading_config } from "./utils/scene_switch_config";
 
 let App = ({ status, history }) => {
   useEffect(() => {

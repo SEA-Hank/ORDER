@@ -1,13 +1,13 @@
-import "../scss/category.scss";
+import "../../../scss/category.scss";
 import { connect } from "react-redux";
-import CategoryItem from "./categoryItem";
+import Item from "./Item";
 import { useEffect, useState, useRef } from "react";
 const Category = ({ local, categories }) => {
   const wrapperEl = useRef(null);
   const ulEl = useRef(null);
   const [markerPst, setMarkerPst] = useState("0px");
 
-  let computePst = function () {
+  let ComputePst = function () {
     let activeItem = ulEl.current.children[local.activatedIndex];
 
     let offsetLeft = activeItem.offsetLeft;
@@ -31,7 +31,7 @@ const Category = ({ local, categories }) => {
   };
 
   useEffect(() => {
-    var pstObj = new computePst();
+    var pstObj = new ComputePst();
 
     let sccrollObj = {
       top: 0,
@@ -47,7 +47,7 @@ const Category = ({ local, categories }) => {
 
   let items = categories.map((item, index) => {
     return (
-      <CategoryItem
+      <Item
         key={item.id}
         name={item.name}
         activated={index === local.activatedIndex}

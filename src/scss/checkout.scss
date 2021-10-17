@@ -1,73 +1,103 @@
 @import "./app.scss";
-@keyframes flash {
-  0% {
-    box-shadow: 0px 0px 0px 0px $primeTheme;
-    text-shadow: 0px 0px 0px $primeTheme;
-  }
-  50% {
-    box-shadow: 0px 0px 10px 1px $primeTheme;
-    text-shadow: 0px 0px 5px $primeTheme;
-  }
-  100% {
-    box-shadow: 0px 0px 0px 0px $primeTheme;
-    text-shadow: 0px 0px 0px $primeTheme;
-  }
-}
-.checkout {
-  position: sticky;
-  bottom: 0px;
-  background-color: white;
-  border-top: 1px solid $primeTheme;
-  z-index: 88;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px;
-  .icon {
-    position: relative;
-    svg {
-      font-size: 2.5rem;
-      color: $primeTheme;
-    }
-    .foodcount {
-      height: 25px;
-      width: 25px;
-      background: red;
-      color: white;
-      border-radius: 25px;
-      position: absolute;
+.shoppingcar-wrapper {
+  padding: 20px;
+  color: $fontColor;
+  .shoppingcar-detail {
+    padding: 20px 0px;
+    box-shadow: 0px 3px 15px 5px #e4e1e1;
+    border-radius: 5px;
+    .spc-detail-title {
+      border-bottom: 1px solid $primeTheme;
+      padding-bottom: 30px;
+      margin-bottom: 5px;
       text-align: center;
-      line-height: 25px;
-      top: -6px;
-      right: 0px;
-      font-weight: bolder;
+      .words {
+        color: $fontColor;
+        font-size: 1.5rem;
+        font-weight: 900;
+        padding: 0px 0px 20px 0px;
+      }
+      .info {
+        color: #9c9c9c;
+        svg {
+          padding: 0px 2px;
+          color: $primeTheme;
+        }
+      }
     }
-  }
-  .amount {
-    padding: 0px 20px;
-    color: $primeTheme;
-    font-size: 1.8rem;
-    font-weight: 900;
-    font-style: italic;
-    flex-grow: 1;
-  }
-  .checkout-button {
-    button {
-      border: 1px solid $primeTheme;
-      background: white;
-      color: $primeTheme;
-      height: 30px;
-      width: 120px;
-      border-radius: 3px;
-      &:active {
-        color: white;
-        background: $primeTheme;
+    .spc-list {
+      .category-wrapper {
+        padding: 10px 10px 0px 10px;
+        .category-title {
+          color: $fontColor;
+          font-weight: 900;
+          font-size: 1rem;
+          font-style: italic;
+        }
+        .items-wrapper {
+          padding: 10px;
+          .list-item {
+            padding: 10px 5px;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            .item-info {
+              flex-grow: 1;
+              .item-name {
+                svg {
+                  margin-left: 20px;
+                  color: $primeTheme;
+                }
+              }
+              .item-count {
+                font-size: 0.8rem;
+                padding: 10px 15px;
+                .qty {
+                  font-weight: 600;
+                  color: #000;
+                }
+                .formula {
+                  margin-left: 20px;
+                }
+              }
+            }
+          }
+        }
       }
-      &.flash {
-        animation-duration: 1.5s;
-        animation-name: flash;
-        animation-iteration-count: 1;
+    }
+    .spc-comfirm {
+      text-align: center;
+      margin-top: 20px;
+      button {
+        height: 40px;
+        width: 90%;
+        @extend %primeButton;
       }
+    }
+    .spc-summary {
+      table {
+        .summary-item {
+          .sum-item-title {
+            text-align: end;
+            width: 100%;
+            &.strong {
+              color: $primeTheme;
+            }
+          }
+          .sum-item-amount {
+            flex-basis: 25px;
+            padding: 5px 25px;
+            text-align: end;
+          }
+        }
+      }
+    }
+    .spc-empty {
+      text-align: CENTER;
+      padding: 10px;
+      color: RED;
+      font-size: 1.6rem;
+      letter-spacing: 5px;
     }
   }
 }

@@ -15,7 +15,7 @@ import {
   HOME_ENTER_ANIMATION,
   OD_RESET,
 } from "./actionTypes";
-import communication from "../common/communication";
+import fetchData from "../utils/fetch_data";
 
 export const ajaxError = (message) => ({
   type: SYS_AJAX_ERROR,
@@ -31,13 +31,11 @@ export const setTitle = (title) => ({
 
 export const asyncGetTitle = () => {
   return (dispatch) => {
-    communication({ method: "get", url: "/getTitle", dispatch }).then(
-      (data) => {
-        setTimeout(() => {
-          dispatch(setTitle(data.title));
-        }, 1000 * 0);
-      }
-    );
+    fetchData({ method: "get", url: "/getTitle", dispatch }).then((data) => {
+      setTimeout(() => {
+        dispatch(setTitle(data.title));
+      }, 1000 * 0);
+    });
   };
 };
 
@@ -62,7 +60,7 @@ const setCategories = (categories) => ({
 
 export const asyncGetCategory = () => {
   return (dispatch) => {
-    communication({ method: "get", url: "/getcategories", dispatch }).then(
+    fetchData({ method: "get", url: "/getcategories", dispatch }).then(
       (categories) => {
         setTimeout(() => {
           dispatch(setCategories(categories));
@@ -81,7 +79,7 @@ export const setFoodList = (foodList) => ({
 
 export const asyncGetFoodList = () => {
   return (dispatch) => {
-    communication({ method: "get", url: "/getfoodlist", dispatch }).then(
+    fetchData({ method: "get", url: "/getfoodlist", dispatch }).then(
       (foodList) => {
         dispatch(setFoodList(foodList));
       }
@@ -124,7 +122,7 @@ export const orderReset = () => ({
 export const asyncOrderSubmit = (paymentInfo, summaryInfo) => {
   return (dispatch, getState) => {
     let { order } = getState();
-    communication({
+    fetchData({
       method: "post",
       url: "/ordersubmit",
       data: { paymentInfo, summaryInfo, order: order.order },
@@ -142,17 +140,17 @@ export const setFetchDataStatus = (status) => ({
 
 export const asyncFetchSysData = () => {
   return (dispatch) => {
-    let promiseTitle = communication({
+    let promiseTitle = fetchData({
       method: "get",
       url: "/getTitle",
       dispatch,
     });
-    let promiseCategories = communication({
+    let promiseCategories = fetchData({
       method: "get",
       url: "/getcategories",
       dispatch,
     });
-    let promiseFoodlist = communication({
+    let promiseFoodlist = fetchData({
       method: "get",
       url: "/getfoodlist",
       dispatch,

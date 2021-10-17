@@ -1,9 +1,8 @@
 import "../../scss/home.scss";
-import Category from "../category";
-import FoodList from "../foodList";
-import CheckOut from "../checkOut";
+import Category from "./category";
+import FoodList from "./food-list";
+import Buttom from "./buttom";
 import { setHomeEnterAnimation } from "../../redux/actions";
-import { useEffect } from "react";
 import { connect } from "react-redux";
 import { useRef } from "react";
 
@@ -22,7 +21,7 @@ const Home = ({ enterAnimation, setHomeEnterAnimation }) => {
     >
       <Category />
       <FoodList homeEl={homeEl} />
-      <CheckOut />
+      <Buttom />
     </div>
   );
 };
