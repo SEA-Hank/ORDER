@@ -37,7 +37,7 @@ const Payment = ({ SummaryInfo, asyncOrderSubmit, status }) => {
         isReady = isReady && checkRes[0];
         paymentInfo[checkRes[2]] = paymentInfo[1];
       });
-      if (isReady || true) {
+      if (isReady) {
         setIsProcessing(true);
         asyncOrderSubmit();
       }
