@@ -13,7 +13,8 @@ const Category = ({ local, categories }) => {
     let offsetLeft = activeItem.offsetLeft;
     let offsetWidth = activeItem.offsetWidth;
     let scrollLeft = wrapperEl.current.scrollLeft;
-    let availWidth = window.screen.availWidth;
+    let availWidth =
+      window.screen.availWidth > 420 ? 420 : window.screen.availWidth;
 
     let plus = 30;
     this.getScrollLeft = function () {

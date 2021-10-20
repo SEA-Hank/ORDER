@@ -1,73 +1,97 @@
+@import "./app.scss";
+#root {
+  // @media screen and (min-width: 420px) {
+  //   width: 420px;
+  //   height: 750px;
+  //   margin: 0px auto;
+  //   .loading_scene_switch {
+  //     height: inherit;
+  //     width: inherit;
+  //   }
+  //   border: 1px solid $primeTheme;
+  //   box-sizing: content-box;
+  //   padding: 5px;
+  //   margin-top: 100px;
+  // }
+}
 .scene-switch-wrapper {
   position: relative;
   flex-grow: 1;
-  overflow: hidden;
-
+  //margin: 50px 0px 60px 0px;
+  //overflow: auto;
+  // -webkit-overflow-scrolling: touch;
   > div {
-    height: 100%;
-    width: 100vw;
-    overflow-y: scroll;
+    // height: 100%;
+    // margin-top: 50px;
+    // margin-bottom: 60px;
+    width: 100%;
+    //overflow-y: auto;
+    //-webkit-overflow-scrolling: touch;
+    // @media screen and (min-width: 420px) {
+    //   width: 100%;
+    // }
   }
 }
 
+%animation_enter_position {
+  position: fixed;
+  top: 0px;
+}
+$transition_time: 500ms;
 .forward-enter {
   transform: translateX(100%);
+  @extend %animation_enter_position;
 }
 
 .forward-enter-active {
   transform: translateX(0);
-  transition: all 500ms;
+  transition: all $transition_time;
 }
 
 .forward-exit {
-  position: absolute;
-  top: 0px;
-  left: 0px;
   transform: translate(0%, 0%);
 }
 
 .forward-exit-active {
   transform: translate(-100%, 0%);
-  transition: all 500ms;
+  transition: all $transition_time;
 }
 
 .back-enter {
+  @extend %animation_enter_position;
   transform: translate(-100%, 0%);
 }
 
 .back-enter-active {
   transform: translate(0%, 0%);
-  transition: all 500ms;
+  transition: all $transition_time;
 }
 
 .back-exit {
-  position: absolute;
-  top: 0px;
-  left: 0px;
   transform: translate(0%, 0%);
 }
 
 .back-exit-active {
   transform: translate(100%, 0%);
-  transition: all 500ms;
+  transition: all $transition_time;
 }
 
 .bottom-enter {
-  transform: translateY(100%);
+  position: fixed;
+  bottom: 0px;
+  transform: translateY(50%);
+  z-index: 70;
 }
 .bottom-enter-active {
   transform: translateY(0);
-  transition: all 500ms;
+  transition: all $transition_time;
 }
 .bottom-exit {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  transform: translate(0%, 0%);
+  opacity: 1;
 }
 .bottom-exit-active {
-  transform: translate(0%, -100%);
-  transition: all 500ms;
+  opacity: 0;
+  transition: all $transition_time;
 }
 
 .fake-in-enter {
@@ -75,7 +99,7 @@
 }
 .fake-in-enter-active {
   opacity: 1;
-  transition: all 800ms;
+  transition: all $transition_time;
 }
 .fake-in-exit {
   position: absolute;
@@ -85,5 +109,5 @@
 }
 .fake-in-exit-active {
   opacity: 0;
-  transition: all 800ms;
+  transition: all $transition_time;
 }

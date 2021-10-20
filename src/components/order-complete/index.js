@@ -3,18 +3,25 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { orderReset } from "../../redux/actions";
 import { useEffect } from "react";
+import { useState } from "react";
 const OrderComplete = ({ orderNumber, orderReset }) => {
   let history = useHistory();
+  const [height, setHeight] = useState(window.innerHeight + "px");
   const btnClick = () => {
     history.goBack();
   };
+  const onResize = () => {
+    setHeight(window.innerHeight + "px");
+  };
   useEffect(() => {
+    window.addEventListener("resize", onResize);
     return () => {
       orderReset();
+      window.removeEventListener("resize", onResize);
     };
   }, []);
   return (
-    <div className="thanks">
+    <div className="order-complete" style={{ height: height }}>
       <p className="ordernum">{orderNumber}</p>
       <p className="words">Thank You</p>
       <p className="time">Your order will be ready in 30 minutes</p>

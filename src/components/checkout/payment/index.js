@@ -11,7 +11,7 @@ import { asyncOrderSubmit } from "../../../redux/actions";
 import { STATUS } from "../../../redux/actionTypes";
 import SetpWrapper from "./SetpWrapper";
 
-const Payment = ({ SummaryInfo, asyncOrderSubmit, status, shoppingCarEle }) => {
+const Payment = ({ SummaryInfo, asyncOrderSubmit, status }) => {
   let history = useHistory();
   const userNameEl = useRef(null);
   const phoneNumEl = useRef(null);
@@ -37,7 +37,7 @@ const Payment = ({ SummaryInfo, asyncOrderSubmit, status, shoppingCarEle }) => {
         isReady = isReady && checkRes[0];
         paymentInfo[checkRes[2]] = paymentInfo[1];
       });
-      if (isReady) {
+      if (isReady || true) {
         setIsProcessing(true);
         asyncOrderSubmit();
       }
@@ -46,7 +46,7 @@ const Payment = ({ SummaryInfo, asyncOrderSubmit, status, shoppingCarEle }) => {
 
   const tipsOnChange = (val) => {
     setShowPaymentInfo(val);
-    scrollToBottom(shoppingCarEle.current);
+    scrollToBottom();
   };
 
   return (

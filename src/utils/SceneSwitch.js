@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 const SceneSwitch = withRouter(
   ({ location, history, children, className, config = {} }) => {
     const [key, setKey] = useState();
+
     const getAnimationClassName = () => {
       return config[location.pathname]?.[history.action];
     };
@@ -17,6 +18,12 @@ const SceneSwitch = withRouter(
         setKey(location.pathname);
       }
     }
+    const onExited = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+      });
+    };
 
     return (
       <TransitionGroup
@@ -27,7 +34,12 @@ const SceneSwitch = withRouter(
           })
         }
       >
-        <CSSTransition timeout={500} key={key}>
+        <CSSTransition
+          // onEntering={onEntered}
+          onExited={onExited}
+          timeout={500}
+          key={key}
+        >
           <Switch location={location}>{children}</Switch>
         </CSSTransition>
       </TransitionGroup>

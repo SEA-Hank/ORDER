@@ -17,7 +17,7 @@ let App = ({ status, history }) => {
   }, []);
 
   return (
-    <SceneSwitch config={loading_config}>
+    <SceneSwitch className={"loading_scene_switch"} config={loading_config}>
       <Route path="/error" component={Error} />
       <Route path="/loading" component={Loading} />
       {status !== STATUS.PENDING && <Route path="/" component={Main} />}

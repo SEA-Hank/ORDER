@@ -7,20 +7,17 @@ import { connect } from "react-redux";
 import { useRef } from "react";
 
 const Home = ({ enterAnimation, setHomeEnterAnimation }) => {
-  const homeEl = useRef();
-
   const onTransitionEnd = () => {
     setHomeEnterAnimation(false);
   };
 
   return (
     <div
-      ref={homeEl}
       onTransitionEnd={onTransitionEnd}
       className={`home ${enterAnimation ? "fakeIn" : ""}`}
     >
       <Category />
-      <FoodList homeEl={homeEl} />
+      <FoodList />
       <Buttom />
     </div>
   );

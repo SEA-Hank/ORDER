@@ -12,27 +12,31 @@ const Category = (props) => {
     activatedIndex,
     isActivatedByClick,
     scrollObserver,
-    homeEl,
   } = props;
   const titleEl = useRef(null);
 
-  useEffect(() => {
-    homeEl.current.addEventListener("scroll", () => {
-      if (!scrollObserver.isLock && titleEl.current) {
-        let top = titleEl.current.getBoundingClientRect().top;
-        if (top <= GAP && top > 0) {
-          setCGActivatedIndex(index, false);
-        }
+  const onScroll = () => {
+    if (!scrollObserver.isLock && titleEl.current) {
+      let top = titleEl.current.getBoundingClientRect().top;
+      if (top <= GAP && top > 0) {
+        setCGActivatedIndex(index, false);
       }
-    });
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   useEffect(() => {
     if (activatedIndex === index && isActivatedByClick) {
       let top = titleEl.current.getBoundingClientRect().top;
       scrollObserver.lockScrollEvent();
-      homeEl.current.scrollTo({
-        top: top + homeEl.current.scrollTop - GAP,
+      window.scrollTo({
+        top: top + window.scrollY - GAP,
         left: 0,
         behavior: "smooth",
       });

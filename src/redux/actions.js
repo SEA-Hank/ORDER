@@ -2,6 +2,7 @@ import {
   SYS_AJAX_ERROR,
   SYS_FETCH_DATA,
   SYS_RELOAD_DATA,
+  SYS_HOME_ENTER_ANIMATION,
   STATUS,
   HD_BTN_TRIGLE,
   HD_SET_TITLE,
@@ -12,7 +13,6 @@ import {
   OD_SET_EDITOR,
   OD_SET_TIPS,
   OD_SUBMIT,
-  HOME_ENTER_ANIMATION,
   OD_RESET,
 } from "./actionTypes";
 import fetchData from "../utils/fetch_data";
@@ -29,15 +29,15 @@ export const setTitle = (title) => ({
   },
 });
 
-export const asyncGetTitle = () => {
-  return (dispatch) => {
-    fetchData({ method: "get", url: "/getTitle", dispatch }).then((data) => {
-      setTimeout(() => {
-        dispatch(setTitle(data.title));
-      }, 1000 * 0);
-    });
-  };
-};
+// export const asyncGetTitle = () => {
+//   return (dispatch) => {
+//     fetchData({ method: "get", url: "/getTitle", dispatch }).then((data) => {
+//       setTimeout(() => {
+//         dispatch(setTitle(data.title));
+//       }, 1000 * 0);
+//     });
+//   };
+// };
 
 export const hdBtnTrigle = () => ({
   type: HD_BTN_TRIGLE,
@@ -58,17 +58,17 @@ const setCategories = (categories) => ({
   },
 });
 
-export const asyncGetCategory = () => {
-  return (dispatch) => {
-    fetchData({ method: "get", url: "/getcategories", dispatch }).then(
-      (categories) => {
-        setTimeout(() => {
-          dispatch(setCategories(categories));
-        }, 1000 * 0);
-      }
-    );
-  };
-};
+// export const asyncGetCategory = () => {
+//   return (dispatch) => {
+//     fetchData({ method: "get", url: "/getcategories", dispatch }).then(
+//       (categories) => {
+//         setTimeout(() => {
+//           dispatch(setCategories(categories));
+//         }, 1000 * 0);
+//       }
+//     );
+//   };
+// };
 
 export const setFoodList = (foodList) => ({
   type: FD_SET_FOODLIST,
@@ -77,15 +77,15 @@ export const setFoodList = (foodList) => ({
   },
 });
 
-export const asyncGetFoodList = () => {
-  return (dispatch) => {
-    fetchData({ method: "get", url: "/getfoodlist", dispatch }).then(
-      (foodList) => {
-        dispatch(setFoodList(foodList));
-      }
-    );
-  };
-};
+// export const asyncGetFoodList = () => {
+//   return (dispatch) => {
+//     fetchData({ method: "get", url: "/getfoodlist", dispatch }).then(
+//       (foodList) => {
+//         dispatch(setFoodList(foodList));
+//       }
+//     );
+//   };
+// };
 
 export const setOrder = (category, foodId, count) => ({
   type: OD_SET_ORDER,
@@ -173,6 +173,6 @@ export const sysReloadData = () => ({
 });
 
 export const setHomeEnterAnimation = (status) => ({
-  type: HOME_ENTER_ANIMATION,
+  type: SYS_HOME_ENTER_ANIMATION,
   payload: status,
 });

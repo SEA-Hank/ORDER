@@ -2,10 +2,10 @@ import {
   OD_SET_ORDER,
   OD_SET_EDITOR,
   OD_SET_TIPS,
-  TipCaculateType,
   OD_RESET,
-  STATUS,
   OD_SUBMIT,
+  Tips_CACULATE_TYPE,
+  STATUS,
 } from "../actionTypes";
 const initialState = {
   /*
@@ -33,7 +33,7 @@ order schema
   taxRate: 0.1,
   tips: {
     isShow: false,
-    caculateType: TipCaculateType.EXACT,
+    caculateType: Tips_CACULATE_TYPE.EXACT,
     value: 0,
   },
   editor: {

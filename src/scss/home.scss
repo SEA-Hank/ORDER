@@ -9,6 +9,8 @@
   }
 }
 .home {
+  margin-top: 50px;
+  margin-bottom: 60px;
   &.fakeIn {
     animation-name: homeFadeIn;
     animation-duration: 1s;

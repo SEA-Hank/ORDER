@@ -1,8 +1,8 @@
 import {
   SYS_FETCH_DATA,
-  STATUS,
-  HOME_ENTER_ANIMATION,
+  SYS_HOME_ENTER_ANIMATION,
   SYS_RELOAD_DATA,
+  STATUS,
 } from "../actionTypes";
 
 const initialState = {
@@ -17,7 +17,7 @@ export default function (state = initialState, actions) {
         ...state,
         status: actions.payload,
       };
-    case HOME_ENTER_ANIMATION:
+    case SYS_HOME_ENTER_ANIMATION:
       return {
         ...state,
         enterAnimation: actions.payload,

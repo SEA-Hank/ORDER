@@ -9,7 +9,7 @@ import { calculateSummaryInfo, scrollToBottom } from "../../utils/common";
 import Payment from "./payment";
 const Checkout = ({ order, SummaryInfo }) => {
   let popUpEL = useRef(null);
-  let shoppingCarEle = useRef();
+
   const [showPayment, setShowPayment] = useState(false);
   let isEmpty = true;
   var isShowGategory = (items) => {
@@ -41,10 +41,10 @@ const Checkout = ({ order, SummaryInfo }) => {
 
   const checkOutClick = () => {
     setShowPayment(true);
-    scrollToBottom(shoppingCarEle.current);
+    scrollToBottom();
   };
   return (
-    <div ref={shoppingCarEle} className="shoppingcar-wrapper">
+    <div className="shoppingcar-wrapper">
       <div className="shoppingcar-detail">
         <div className="spc-detail-title">
           <p className="words">Your Order</p>
@@ -67,12 +67,7 @@ const Checkout = ({ order, SummaryInfo }) => {
       </div>
       {!isEmpty && (
         <>
-          {showPayment && (
-            <Payment
-              SummaryInfo={SummaryInfo}
-              shoppingCarEle={shoppingCarEle}
-            ></Payment>
-          )}
+          {showPayment && <Payment SummaryInfo={SummaryInfo}></Payment>}
           <ItemEditor ref={popUpEL}></ItemEditor>
         </>
       )}

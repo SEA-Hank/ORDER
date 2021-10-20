@@ -1,7 +1,11 @@
 @import "./app.scss";
-.thanks {
+.order-complete {
   text-align: center;
-  margin-top: 150px;
+  //padding-top: 200px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   P {
     padding: 15px;
     &.ordernum {
