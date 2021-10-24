@@ -16,8 +16,9 @@ export const OD_SET_EDITOR = "OD_SET_EDITOR";
 export const OD_SET_TIPS = "OD_SET_TIPS";
 export const OD_RESET = "OD_RESET";
 export const OD_SUBMIT = "OD_SUBMIT";
+export const OD_FROM_COOKIES = "OD_FROM_COOKIES";
 
-export const Tips_CACULATE_TYPE = {
+export const TIPS_CACULATE_TYPE = {
   EXACT: "exact",
   PERCENTAGE: "percentage",
 };

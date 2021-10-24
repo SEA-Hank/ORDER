@@ -1,4 +1,4 @@
-import { Tips_CACULATE_TYPE } from "../redux/actionTypes";
+import { TIPS_CACULATE_TYPE } from "../redux/actionTypes";
 export const calculateSummaryInfo = (orders, foodList, tips, taxRate) => {
   let subtotal = 0;
   let totalWithoutTips = 0;
@@ -16,7 +16,7 @@ export const calculateSummaryInfo = (orders, foodList, tips, taxRate) => {
   tax = toDecimal(subtotal * taxRate);
   totalWithoutTips = tax + subtotal;
   tipVal =
-    tips.caculateType === Tips_CACULATE_TYPE.EXACT
+    tips.caculateType === TIPS_CACULATE_TYPE.EXACT
       ? tips.value
       : toDecimal(totalWithoutTips * tips.value);
 

@@ -14,7 +14,9 @@ import {
   OD_SET_TIPS,
   OD_SUBMIT,
   OD_RESET,
+  OD_FROM_COOKIES,
 } from "./actionTypes";
+import Cookies from "js-cookie";
 import fetchData from "../utils/fetch_data";
 
 export const ajaxError = (message) => ({
@@ -96,6 +98,11 @@ export const setOrder = (category, foodId, count) => ({
   },
 });
 
+export const setOrderFromCookies = (order) => ({
+  type: OD_FROM_COOKIES,
+  payload: order,
+});
+
 export const setOrderEditor = (foodInfo, quantity, category) => ({
   type: OD_SET_EDITOR,
   payload: { foodInfo, quantity, category },
@@ -161,6 +168,12 @@ export const asyncFetchSysData = () => {
         dispatch(setCategories(values[1]));
         dispatch(setFoodList(values[2]));
         dispatch(setFetchDataStatus(STATUS.SUCCESS));
+        let order = Cookies.get("order");
+        if (order) {
+          try {
+            dispatch(setOrderFromCookies(JSON.parse(order)));
+          } catch (ex) {}
+        }
       })
       .catch(() => {
         dispatch(setFetchDataStatus(STATUS.FAILURE));

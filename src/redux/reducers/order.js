@@ -4,9 +4,11 @@ import {
   OD_SET_TIPS,
   OD_RESET,
   OD_SUBMIT,
-  Tips_CACULATE_TYPE,
+  OD_FROM_COOKIES,
+  TIPS_CACULATE_TYPE,
   STATUS,
 } from "../actionTypes";
+import Cookies from "js-cookie";
 const initialState = {
   /*
 order schema
@@ -33,7 +35,7 @@ order schema
   taxRate: 0.1,
   tips: {
     isShow: false,
-    caculateType: Tips_CACULATE_TYPE.EXACT,
+    caculateType: TIPS_CACULATE_TYPE.EXACT,
     value: 0,
   },
   editor: {
@@ -49,13 +51,15 @@ export default function (state = initialState, actions) {
   switch (actions.type) {
     case OD_SET_ORDER:
       let { category, foodId, count } = actions.payload;
-      return {
+      let newOrder = {
         ...state,
         order: {
           ...state.order,
           [category]: { ...state.order[category], [foodId]: count },
         },
       };
+      Cookies.set("order", JSON.stringify(newOrder.order), { expires: 1 });
+      return newOrder;
     case OD_SET_EDITOR:
       return {
         ...state,
@@ -69,6 +73,7 @@ export default function (state = initialState, actions) {
         tips: { ...actions.payload },
       };
     case OD_RESET:
+      Cookies.remove("order");
       return initialState;
     case OD_SUBMIT:
       return {
@@ -76,6 +81,8 @@ export default function (state = initialState, actions) {
         status: actions.payload.status,
         orderNumber: actions.payload.orderNumber,
       };
+    case OD_FROM_COOKIES:
+      return { ...state, order: actions.payload };
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../../../scss/tips_selector.scss";
 import { connect } from "react-redux";
 import { setOrderTips } from "../../../redux/actions";
-import { Tips_CACULATE_TYPE } from "../../../redux/actionTypes";
+import { TIPS_CACULATE_TYPE } from "../../../redux/actionTypes";
 const TipsSelector = ({ totalWithoutTips, setOrderTips, onchange }) => {
   let tipsOption = {
     "0%": 0,
@@ -15,21 +15,21 @@ const TipsSelector = ({ totalWithoutTips, setOrderTips, onchange }) => {
 
   const [value, setValue] = useState();
   const [activatedIndex, setActivatedIndex] = useState(null);
-  const [caculateType, setCaculateType] = useState(Tips_CACULATE_TYPE.EXACT);
+  const [caculateType, setCaculateType] = useState(TIPS_CACULATE_TYPE.EXACT);
   const [caculateTypeValue, setCaculateTypeValue] = useState(0);
 
   const inputChange = (event) => {
     let val = event.target.value;
     if (val === "" || tipReg.test(val)) {
       let tips = parseFloat(val) || 0;
-      updateState(tips, val, null, Tips_CACULATE_TYPE.EXACT, tips);
+      updateState(tips, val, null, TIPS_CACULATE_TYPE.EXACT, tips);
       onchange(true);
     }
   };
 
   const optionSelected = (value, index) => {
     let tips = parseFloat((totalWithoutTips * value).toFixed(2));
-    updateState(value, tips, index, Tips_CACULATE_TYPE.PERCENTAGE, value);
+    updateState(value, tips, index, TIPS_CACULATE_TYPE.PERCENTAGE, value);
     onchange(true);
   };
 
@@ -73,12 +73,12 @@ const TipsSelector = ({ totalWithoutTips, setOrderTips, onchange }) => {
 
   useEffect(() => {
     return () => {
-      setOrderTips(0, Tips_CACULATE_TYPE.EXACT, false);
+      setOrderTips(0, TIPS_CACULATE_TYPE.EXACT, false);
     };
   }, []);
 
   useEffect(() => {
-    if (caculateType === Tips_CACULATE_TYPE.PERCENTAGE) {
+    if (caculateType === TIPS_CACULATE_TYPE.PERCENTAGE) {
       let tips = parseFloat((totalWithoutTips * caculateTypeValue).toFixed(2));
       setValue(tips);
     }
