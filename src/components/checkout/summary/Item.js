@@ -1,3 +1,6 @@
+/**
+summary item
+ */
 const Item = ({ title, amout, strong = false }) => {
   return (
     <tr className="summary-item">

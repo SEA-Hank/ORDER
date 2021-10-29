@@ -2,6 +2,9 @@ import FoodItem from "./Item";
 import { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { setCGActivatedIndex } from "../../../redux/actions";
+/*
+Category part of food-list page
+ */
 const Category = (props) => {
   const GAP = 150;
   let {
@@ -14,7 +17,10 @@ const Category = (props) => {
     scrollObserver,
   } = props;
   const titleEl = useRef(null);
-
+  /**
+   * onScroll event
+   * chagne activated item of category part depend on scroll bar position
+   */
   const onScroll = () => {
     if (!scrollObserver.isLock && titleEl.current) {
       let top = titleEl.current.getBoundingClientRect().top;
@@ -31,6 +37,9 @@ const Category = (props) => {
     };
   }, []);
 
+  /**
+   * change scroll bar position by activated item of category part
+   */
   useEffect(() => {
     if (activatedIndex === index && isActivatedByClick) {
       let top = titleEl.current.getBoundingClientRect().top;

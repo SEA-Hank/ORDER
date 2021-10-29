@@ -1,3 +1,6 @@
+/*
+payment page step wrapper
+ */
 const SetpWrapper = (props) => {
   return (
     <div className={`paymentStep-wrapper ${props.customClass || ""}`}>

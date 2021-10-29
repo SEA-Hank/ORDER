@@ -2,6 +2,9 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { setOrderEditor } from "../../../redux/actions";
+/*
+item of category part in checkout page
+ */
 const Item = ({ info, quantity, popUp, category, setOrderEditor }) => {
   const showEditor = () => {
     setOrderEditor(info, quantity, category);

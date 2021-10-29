@@ -10,7 +10,9 @@ import { connect } from "react-redux";
 import { asyncOrderSubmit } from "../../../redux/actions";
 import { STATUS } from "../../../redux/actionTypes";
 import SetpWrapper from "./SetpWrapper";
-
+/*
+payment part of checkout page
+ */
 const Payment = ({ SummaryInfo, asyncOrderSubmit, status }) => {
   let history = useHistory();
   const userNameEl = useRef(null);

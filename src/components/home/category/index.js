@@ -2,11 +2,19 @@ import "../../../scss/category.scss";
 import { connect } from "react-redux";
 import Item from "./Item";
 import { useEffect, useState, useRef } from "react";
+/*
+Food category section in home page
+parameters
+  local: redux data, infos about activated item index
+  categories: redux data, food categories
+ */
 const Category = ({ local, categories }) => {
   const wrapperEl = useRef(null);
   const ulEl = useRef(null);
   const [markerPst, setMarkerPst] = useState("0px");
-
+  /*
+  compute the ulEl's scroll bar positon based on activated item.
+   */
   let ComputePst = function () {
     let activeItem = ulEl.current.children[local.activatedIndex];
 

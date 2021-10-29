@@ -1,5 +1,8 @@
 import Item from "./Item";
 import ItemEditor from "./ItemEditor";
+/*
+category part of checkout page
+ */
 const Category = ({ category, items, popUp }) => {
   const generateItems = () => {
     let list = [];

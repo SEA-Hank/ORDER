@@ -3,6 +3,9 @@ import "../../../scss/tips_selector.scss";
 import { connect } from "react-redux";
 import { setOrderTips } from "../../../redux/actions";
 import { TIPS_CACULATE_TYPE } from "../../../redux/actionTypes";
+/*
+
+ */
 const TipsSelector = ({ totalWithoutTips, setOrderTips, onchange }) => {
   let tipsOption = {
     "0%": 0,

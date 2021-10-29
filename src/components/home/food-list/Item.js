@@ -1,6 +1,10 @@
 import Operation from "./Operation";
 import { connect } from "react-redux";
 import { setOrder } from "../../../redux/actions";
+/**
+ * item of food-list page
+ *
+ */
 const Item = (props) => {
   let { id, category, name, description, img, price, countOfOrder } = props;
   let { setOrder } = props;

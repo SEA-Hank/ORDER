@@ -4,6 +4,10 @@ import withPopUp from "../../../utils/widthPopUp";
 import Counter from "../../../utils/counter";
 import { useEffect, useState } from "react";
 import { setOrder } from "../../../redux/actions";
+/*
+item editor 
+modify user order in checkout page
+ */
 let ItemEditor = ({ popUp, foodInfo, quantity, category, setOrder }) => {
   const [qty, setQty] = useState(quantity);
 

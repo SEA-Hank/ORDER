@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { setOrder } from "../../../redux/actions";
 import { connect } from "react-redux";
+/**
+ Food item operation
+ */
 const Operation = ({ category, foodId, countOfOrder, setOrder }) => {
   const Position = {
     UP: "-100px",

@@ -6,6 +6,14 @@ import { STATUS } from "../redux/actionTypes";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { useEffect } from "react";
+/*
+Loading page
+This page for Loading website's data
+parameters
+  asyncFetchSysData: redux action function, for fetch data 
+  status: redux data, loading data status
+  history: withRouter parameter
+*/
 let Loading = ({ asyncFetchSysData, status, history }) => {
   useEffect(() => {
     switch (status) {

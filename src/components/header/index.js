@@ -5,6 +5,11 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { hdBtnTrigle } from "../../redux/actions";
 import { useLocation, useHistory } from "react-router-dom";
+/**
+Header part of home page
+parameters
+  title: website title
+ */
 const Header = ({ title }) => {
   let location = useLocation();
   let history = useHistory();

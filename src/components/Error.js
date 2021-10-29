@@ -4,6 +4,13 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
 import { sysReloadData } from "../redux/actions";
 import { connect } from "react-redux";
+/*
+Error page
+Website will relocate to this page when an error occurred in loading data.
+parameters
+  sysReloadData: redux action function, for fetching data again
+  history: withRouter parameter
+*/
 let Error = ({ sysReloadData, history }) => {
   const onClick = () => {
     sysReloadData();

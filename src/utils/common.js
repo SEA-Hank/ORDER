@@ -1,4 +1,7 @@
 import { TIPS_CACULATE_TYPE } from "../redux/actionTypes";
+/**
+ calculate user order
+ */
 export const calculateSummaryInfo = (orders, foodList, tips, taxRate) => {
   let subtotal = 0;
   let totalWithoutTips = 0;
@@ -30,6 +33,7 @@ export const calculateSummaryInfo = (orders, foodList, tips, taxRate) => {
     isShowTips: tips.isShow,
   };
 };
+
 export const toDecimal = (number, decimal = 2) => {
   return parseFloat(number.toFixed(decimal));
 };

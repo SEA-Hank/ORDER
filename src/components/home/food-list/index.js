@@ -4,9 +4,16 @@ import { connect } from "react-redux";
 import { useCallback } from "react";
 import { useRef } from "react";
 
-const FoodList = ({ foodList, homeEl }) => {
+/**
+ food-list page
+ parameters
+  foodList: redux data
+ */
+const FoodList = ({ foodList }) => {
   const flEle = useRef();
-
+  /*
+   isLock will be true when scroll event by user click the categories item
+  */
   const scrollObserver = {
     isLock: false,
     unLockTime: 500,
@@ -30,7 +37,6 @@ const FoodList = ({ foodList, homeEl }) => {
             key={key}
             title={key}
             itmes={foodList[key]}
-            homeEl={homeEl}
           />
         );
         index++;

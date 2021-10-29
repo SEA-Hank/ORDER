@@ -4,6 +4,14 @@ import { connect } from "react-redux";
 import { orderReset } from "../../redux/actions";
 import { useEffect } from "react";
 import { useState } from "react";
+
+/*
+OrderComplete page
+This page for at the end of order
+parameters
+  orderNumber: redux data, the order number
+  orderReset: redux action function, empty user's order.
+*/
 const OrderComplete = ({ orderNumber, orderReset }) => {
   let history = useHistory();
   const [height, setHeight] = useState(window.innerHeight + "px");

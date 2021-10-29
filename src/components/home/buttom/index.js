@@ -5,6 +5,14 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { hdBtnTrigle } from "../../../redux/actions";
+/*
+Buttom page
+the buttom of home page
+parameters
+  count: quantity of user order
+  amount: total amount of order
+  hdBtnTrigle: redux action funciton, controls whether go back button is displayed
+*/
 const Buttom = ({ count, amount, hdBtnTrigle }) => {
   let [flash, setFlash] = useState(false);
   let history = useHistory();

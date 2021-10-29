@@ -7,6 +7,12 @@ import Category, { ItemEditor } from "./category";
 import Summary from "./summary";
 import { calculateSummaryInfo, scrollToBottom } from "../../utils/common";
 import Payment from "./payment";
+/*
+checkout page
+parameters
+  order: redux data
+  SummaryInfo, information about user order
+ */
 const Checkout = ({ order, SummaryInfo }) => {
   let popUpEL = useRef(null);
 

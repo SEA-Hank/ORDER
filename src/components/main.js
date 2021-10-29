@@ -6,6 +6,9 @@ import Checkout from "./checkout";
 import OrderComplete from "./order-complete";
 import SceneSwitch from "../utils/SceneSwitch";
 import { main_config } from "../utils/scene_switch_config";
+/*
+website's main entrance 
+*/
 const Main = () => {
   return (
     <div className="main">

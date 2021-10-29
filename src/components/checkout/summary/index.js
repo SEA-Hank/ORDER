@@ -1,5 +1,8 @@
 //todo
 import Item from "./Item";
+/**
+summary about user order
+ */
 const Summary = ({ total, subtotal, tax, tips, isShowTips }) => {
   return (
     <table>
